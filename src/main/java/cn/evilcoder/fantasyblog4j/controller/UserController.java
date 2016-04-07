@@ -17,7 +17,7 @@ import java.util.Date;
  */
 
 @Controller
-@RequestMapping(value = "admin")
+@RequestMapping(value = "u")
 public class UserController {
 
   @Autowired
@@ -26,6 +26,7 @@ public class UserController {
   @ResponseBody
   @RequestMapping(value = "init",method = RequestMethod.GET)
   public Object initAdmin(){
+    System.out.println("coming.....................");
     User user = new User();
     user.setUsername("test");
     user.setPassword("test1234567");

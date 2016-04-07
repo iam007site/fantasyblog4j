@@ -30,7 +30,7 @@
     <insert id="insert" useGeneratedKeys="true" parameterType="user" keyProperty="id">
         INSERT into
         u_user(username,password,salt,email,nickname,enable,avatar,ctime,mtime,last_login_time)
-        VALUES (#{username},#{password},#{salt},#{email},#{nickname},#{enable},#{avatar},#{ctime},#{mtime},#{last_login_time})
+        VALUES (#{username},#{password},#{salt},#{email},#{nickname},#{enable},#{avatar},#{ctime},#{mtime},#{lastLoginTime})
     </insert>
     <select id="select" resultMap="userMap" parameterType="long">
         select * from u_user where id = #{id} limit 1
