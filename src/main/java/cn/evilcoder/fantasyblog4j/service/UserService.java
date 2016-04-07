@@ -18,5 +18,4 @@ public interface UserService {
   public long insert(User user);
   public User select(long id);
   public User selectByUsername(String username);
-
 }
