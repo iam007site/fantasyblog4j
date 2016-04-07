@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Maps '/' requests to the 'home' view -->
+	<mvc:view-controller path="/" view-name="home" />
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean id="jacksonMessageConverter"
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/html</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+	</mvc:interceptors>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="zh_CN"/>
+	</bean>
+<!--	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**" /> 
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/register" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="*.html" />
+			<bean class="com.galaxy.front.web.rest.interceptor.AuthApiHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>-->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- scan controller base package-->
+	<context:component-scan base-package="cn.evilcoder.fantasyblog4j.controller" />
+
+    <!-- 配置springMVC处理上传文件的信息 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="10485760000"/>
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
+
+    <!-- 启用shrio授权注解拦截方式 -->
+    <aop:config proxy-target-class="true"></aop:config>
+
+
+	<!-- <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"> 
+		<property name="securityManager" ref="securityManager" /> <property name="loginUrl" 
+		value="/user/login" /> <property name="successUrl" value="/" /> <property 
+		name="unauthorizedUrl" value="/unauthorized" /> <property name="filterChainDefinitions"> 
+		<value> /favicon.ico = anon /logo.png = anon /shiro.css = anon /s/login = 
+		anon # allow WebStart to pull the jars for the swing app: /*.jar = anon # 
+		everything else requires authentication: /** = authc </value> </property> 
+		</bean> -->
+</beans>
