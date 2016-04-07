@@ -44,4 +44,19 @@ public class UserController {
     return user.getId();
   }
 
+  @ResponseBody
+  @RequestMapping(value = "login",method = RequestMethod.GET)
+  public Object login(){
+    String username = "test";
+    String password = "test1234567";
+
+    User user = userService.selectByUsername(username);
+
+    if(userService.checkPassword(user,password)){
+      return user;
+    }else{
+      return null;
+    }
+  }
+
 }

@@ -13,6 +13,10 @@ public interface UserService {
   public static final int HASH_INTERATIONS = 1024;
   public static final int SALT_SIZE = 8;
 
+  public boolean checkPassword(User user,String password);
+
   public long insert(User user);
   public User select(long id);
+  public User selectByUsername(String username);
+
 }

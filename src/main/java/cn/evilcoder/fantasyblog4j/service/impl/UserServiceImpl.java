@@ -19,6 +19,12 @@ public class UserServiceImpl implements UserService {
   private UserDao userDao;
 
   @Override
+  public boolean checkPassword(User user,String password){
+    String hashPassword = Encodes.encodeHex(Digests.sha1(password.getBytes(),Encodes.decodeHex(user.getSalt()),HASH_INTERATIONS));
+    return hashPassword.equals(user.getPassword());
+  }
+
+  @Override
   public long insert(User user) {
 
     byte[] salt = Digests.generateSalt(SALT_SIZE);
@@ -32,5 +38,10 @@ public class UserServiceImpl implements UserService {
   @Override
   public User select(long id) {
     return userDao.select(id);
+  }
+
+  @Override
+  public User selectByUsername(String username) {
+    return userDao.selectByUsername(username);
   }
 }

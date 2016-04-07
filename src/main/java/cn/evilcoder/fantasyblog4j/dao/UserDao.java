@@ -12,4 +12,5 @@ public interface UserDao {
 
   public long insert(User user);
   public User select(@Param("id") long id);
+  public User selectByUsername(@Param("username") String username);
 }
