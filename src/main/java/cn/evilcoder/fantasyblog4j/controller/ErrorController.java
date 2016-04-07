@@ -14,16 +14,16 @@ public class ErrorController {
 
     @RequestMapping(value = "404")
     public String error404(){
-        return "404";
+        return "error/404";
     }
 
     @RequestMapping(value = "401")
     public String error401(){
-        return "401";
+        return "error/401";
     }
 
     @RequestMapping(value = "500")
     public String error500(){
-        return "500";
+        return "error/500";
     }
 }

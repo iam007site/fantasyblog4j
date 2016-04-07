@@ -24,6 +24,7 @@
 
 
 	<import resource="classpath:spring/spring-mybatis.xml"/>
+	<import resource="classpath:spring/freemarker-conf.xml"/>
     <!--<import resource="classpath:spring/kaptcha-context.xml"/>-->
     <!--<import resource="classpath:spring/spring-smtp-mail.xml"/>-->
     <!--<import resource="classpath:spring/security/applicationContext-shiro.xml"/>-->
