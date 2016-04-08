@@ -20,43 +20,28 @@ import java.util.Date;
 @RequestMapping(value = "u")
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  @ResponseBody
-  @RequestMapping(value = "init",method = RequestMethod.GET)
-  public Object initAdmin(){
-    System.out.println("coming.....................");
-    User user = new User();
-    user.setUsername("test");
-    user.setPassword("test1234567");
-    user.setEmail("test@test");
-    user.setAvatar("");
-    user.setEnable(1);
-    user.setNickname("test");
-    Date now = new Date();
-    user.setCtime(now);
-    user.setMtime(now);
-    user.setLastLoginTime(now);
+    @ResponseBody
+    @RequestMapping(value = "init", method = RequestMethod.GET)
+    public Object initAdmin() {
+        System.out.println("coming.....................");
+        User user = new User();
+        user.setUsername("test");
+        user.setPassword("test1234567");
+        user.setEmail("test@test");
+        user.setAvatar("");
+        user.setEnable(1);
+        user.setNickname("test");
+        Date now = new Date();
+        user.setCtime(now);
+        user.setMtime(now);
+        user.setLastLoginTime(now);
 
-    userService.insert(user);
+        userService.insert(user);
 
-    return user.getId();
-  }
-
-  @ResponseBody
-  @RequestMapping(value = "login",method = RequestMethod.GET)
-  public Object login(){
-    String username = "test";
-    String password = "test1234567";
-
-    User user = userService.selectByUsername(username);
-
-    if(userService.checkPassword(user,password)){
-      return user;
-    }else{
-      return null;
+        return user.getId();
     }
-  }
 
 }
