@@ -21,10 +21,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<%--    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>--%>
+    <script src="/resources/jquery2.1.4/jquery-2.1.4.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--%>
+    <script src="/resources/bootstrap3.3.5/js/bootstrap.min.js"></script>
 
     <!--login-->
     <script src="/resources/login/login.js"></script>

@@ -17,9 +17,9 @@
     <title>home page</title>
     <!-- -->
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="/resources/bootstrap3.3.5/css/bootstrap-3.3.5.css" rel="stylesheet">
+    <link href="/resources/bootstrap3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <script src="/resources/jquery2.1.4/jquery-2.1.4.js"></script>
-    <script src="/resources/bootstrap3.3.5/js/bootstrap-3.3.5.js"></script>
+    <script src="/resources/bootstrap3.3.5/js/bootstrap.min.js"></script>
     <!-- include summernote css/js-->
     <link href="/resources/summernote0.8.1/summernote0.8.1.css" rel="stylesheet">
     <script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
