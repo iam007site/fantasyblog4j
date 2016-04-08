@@ -1,8 +1,50 @@
 ﻿# Host: localhost  (Version: 5.5.27)
-# Date: 2016-04-07 22:58:27
+# Date: 2016-04-08 21:51:10
 # Generator: MySQL-Front 5.3  (Build 4.198)
 
 /*!40101 SET NAMES utf8 */;
+
+#
+# Structure for table "p_post"
+#
+
+DROP TABLE IF EXISTS `p_post`;
+CREATE TABLE `p_post` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uid` bigint(20) NOT NULL DEFAULT '0',
+  `title` varchar(500) NOT NULL DEFAULT '',
+  `content` longtext,
+  `category` varchar(50) NOT NULL DEFAULT '',
+  `visist_time` int(11) NOT NULL DEFAULT '0',
+  `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8 COMMENT='post table';
+
+#
+# Data for table "p_post"
+#
+
+
+#
+# Structure for table "p_post_tag"
+#
+
+DROP TABLE IF EXISTS `p_post_tag`;
+CREATE TABLE `p_post_tag` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uid` bigint(20) NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `num` int(11) NOT NULL DEFAULT '0',
+  `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8 COMMENT='post tag table';
+
+#
+# Data for table "p_post_tag"
+#
+
 
 #
 # Structure for table "test"
@@ -14,7 +56,7 @@ CREATE TABLE `test` (
   `username` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8 COMMENT='for test';
+) ENGINE=InnoDB AUTO_INCREMENT=100005 DEFAULT CHARSET=utf8 COMMENT='for test';
 
 #
 # Data for table "test"
@@ -40,7 +82,7 @@ CREATE TABLE `u_user` (
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8 COMMENT='user table';
+) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8 COMMENT='user table';
 
 #
 # Data for table "u_user"
