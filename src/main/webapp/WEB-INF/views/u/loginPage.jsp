@@ -15,10 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>login page</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/bootstrap3.3.5/css/bootstrap.min.css">
 
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/resources/bootstrap3.3.5/css/bootstrap-theme.min.css">
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <%--    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>--%>
@@ -37,7 +37,7 @@
 <div class="container">
     <div class="row">
         <h1 class="text-center">登录 www.evilcoder.cn</h1>
-        <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Open Login Modal</a></p>
+        <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Login www.evilcoder.cn</a></p>
     </div>
 </div>
 <!-- END # BOOTSNIP INFO -->
