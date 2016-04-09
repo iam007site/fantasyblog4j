@@ -60,19 +60,29 @@
                             </div>
                         </div>
 
-                        <!-- Email input-->
+                        <!-- 分类-->
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="category">分类</label>
                             <div class="col-md-2">
-                                <select class="selectpicker" id="category">
-                                    <option>Java</option>
-                                    <option>Scala</option>
-                                    <option>Mysql</option>
-                                </select>
+                                <input name="category" id="category" value="" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-9">
+                                <span class="text-center">或点击右边热门分类进行选择！</span>
                             </div>
                         </div>
 
-                        <!-- content body -->
+                        <!-- 标签-->
+                        <div class="form-group">
+                            <label class="col-md-1 control-label" for="tags">标签</label>
+                            <div class="col-md-9">
+                                <input name="tags" id="tags" value="" />
+                            </div>
+                            <div class="col-md-2">
+                                <span class="text-center">或点击热门选择标签</span>
+                            </div>
+                        </div>
+
+                        <!-- 详情 -->
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="summernote">详情</label>
                             <div class="col-md-11">
@@ -92,9 +102,53 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="well well-sm">
-                <h1>fafafasfgsff</h1>
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-tags"></i> 热门分类 :</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li class="category-select" value="lajflajf"><span class="badge badge-info">Windows 8</span></li>
+                            <li class="category-select" value="lajflajf"><span class="badge badge-info">C#</span></li>
+                            <li class="category-select" value="lajflajf"><span class="badge badge-info">Windows Forms</span></li>
+                            <li class="category-select" value="lajflajf"><span class="badge badge-info">WPF</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li ><span class="category-select badge badge-info">Bootstrap</span></li>
+                            <li ><span class="category-select badge badge-info">Joomla!</span></li>
+                            <li ><span class="category-select badge badge-info">CMS</span></li>
+                            <li ><span class="category-select badge badge-info">Java</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <!-- /well -->
+
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-tags"></i> 热门标签:</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li class="tags-select"><span class="badge badge-info">Windows 8</span></li>
+                            <li class="tags-select"><span class="badge badge-info">C#</span></li>
+                            <li class="tags-select"><span class="badge badge-info">Windows Forms</span></li>
+                            <li class="tags-select"><span class="badge badge-info">WPF</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li ><span class="category-select badge badge-info">Bootstrap</span></li>
+                            <li ><span class="category-select badge badge-info">Joomla!</span></li>
+                            <li ><span class="category-select badge badge-info">CMS</span></li>
+                            <li ><span class="category-select badge badge-info">Java</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /well -->
 
         </div>
     </div>
@@ -106,7 +160,15 @@
         $('#summernote').summernote({
             minHeight: 400
         });
-        //$('#tags').tagsInput();
+        $('#tags').tagsInput({
+            'height':'50px',
+            'width':'100%'
+        });
+        $('.category-select').onclick(function(e){
+            var text = e.target.value();
+            alert(text);
+            $('#category').value(text);
+        });
     });
     /*    function setEditorContent(){
      var tags = $('#tags').val();

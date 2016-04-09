@@ -17,6 +17,7 @@
     <resultMap id="PostTagMap" type="postTag">
         <id column="id" property="id"/>
         <result column="uid" property="uid"/>
+        <result column="pid" property="pid"/>
         <result column="name" property="name"/>
         <result column="num" property="num"/>
         <result column="ctime" property="ctim"/>
@@ -24,9 +25,9 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="postTag" keyProperty="id">
-        insert into p_post_tag(uid,name,num,ctime,mtime) values(#{uid},#{name},#{num},#{ctime},#{mtime})
+        insert into p_post_tag(uid,pid,name,num,ctime,mtime) values(#{uid},#{pid},#{name},#{num},#{ctime},#{mtime})
     </insert>
-    <select id="selectAll" resultMap="PostTagMamp" parameterType="long" useCache="true">
+    <select id="selectAll" resultMap="PostTagMap" parameterType="long" useCache="true">
         select * FROM  p_post_tag WHERE uid = #{uid}
     </select>
 </mapper>

@@ -73,7 +73,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
+<!--    <filter>
         <display-name>ParametersLogFilter</display-name>
         <filter-name>ParametersLogFilter</filter-name>
         <filter-class>cn.evilcoder.fantasyblog4j.filter.ParametersLogFilter</filter-class>
@@ -81,7 +81,7 @@
     <filter-mapping>
         <filter-name>ParametersLogFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 
     <!-- 错误页 -->

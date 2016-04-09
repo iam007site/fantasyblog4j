@@ -51,16 +51,16 @@ public class UserController {
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
     public String home(){
-        return "u/addPost";
+        return "posy/addPost";
     }
     @RequestMapping(value = "post",method = RequestMethod.GET)
     public String addPostPage(){
-        return "u/addPost";
+        return "post/addPost";
     }
     @RequestMapping(value = "post",method = RequestMethod.POST)
     public String addPostSubmit(@RequestParam("editor") String editor){
         logger.info("editor content=== " + editor);
-        return "u/home";
+        return "post/home";
     }
 
 }

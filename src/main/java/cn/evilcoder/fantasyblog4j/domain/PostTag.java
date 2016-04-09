@@ -7,6 +7,7 @@ package cn.evilcoder.fantasyblog4j.domain;
  */
 public class PostTag extends BaseDomain{
   private long uid;
+  private long pid;
   private String name;
   private int num;
 
@@ -16,6 +17,14 @@ public class PostTag extends BaseDomain{
 
   public void setUid(long uid) {
     this.uid = uid;
+  }
+
+  public long getPid() {
+    return pid;
+  }
+
+  public void setPid(long pid) {
+    this.pid = pid;
   }
 
   public String getName() {
