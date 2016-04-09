@@ -22,11 +22,9 @@
     <link rel="stylesheet" href="/resources/bootstrap3.3.5/css/bootstrap-theme.min.css">
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <%--    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>--%>
     <script src="/resources/jquery2.1.4/jquery-2.1.4.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <%--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--%>
     <script src="/resources/bootstrap3.3.5/js/bootstrap.min.js"></script>
 
     <!-- include summernote css/js-->
@@ -35,7 +33,7 @@
 
     <!-- tagsinput-->
     <script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resources/jquerytagsinput/jquery.tagsinput.min.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/jquerytagsinput/jquery.tagsinput.min.css"/>
     <!-- tagsinput-->
 
     <!--bootstrap select-->
@@ -57,7 +55,8 @@
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="title">标题</label>
                             <div class="col-md-11">
-                                <input id="title" name="title" type="text" placeholder="write you blog title here..." class="form-control">
+                                <input id="title" name="title" type="text" placeholder="write you blog title here..."
+                                       class="form-control">
                             </div>
                         </div>
 
@@ -102,22 +101,21 @@
 </div>
 
 
-
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#summernote').summernote({
-            minHeight:400
+            minHeight: 400
         });
         //$('#tags').tagsInput();
     });
-/*    function setEditorContent(){
-        var tags = $('#tags').val();
-        alert("text"+tags);
-        var markupStr = $('#summernote').summernote('code');
-        alert(markupStr);
-        $('#editor').val(markupStr);
-        $('#postForm').submit();
-    }*/
+    /*    function setEditorContent(){
+     var tags = $('#tags').val();
+     alert("text"+tags);
+     var markupStr = $('#summernote').summernote('code');
+     alert(markupStr);
+     $('#editor').val(markupStr);
+     $('#postForm').submit();
+     }*/
 
 </script>
 </body>

@@ -29,8 +29,8 @@
     <script src="/resources/bootstrap3.3.5/js/bootstrap.min.js"></script>
 
     <!--login-->
-    <script src="/resources/login/login.js"></script>
-    <link rel="stylesheet" href="/resources/login/login.css">
+    <script src="/resources/login/js/login.js"></script>
+    <link rel="stylesheet" href="/resources/login/css/login.css">
 </head>
 <body>
 <!-- BEGIN # BOOTSNIP INFO -->
