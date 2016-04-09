@@ -8,7 +8,7 @@
    #
    ##################################################################### */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(/resources/login/roboto.css);
 
 * {
     font-family: 'Roboto', sans-serif;

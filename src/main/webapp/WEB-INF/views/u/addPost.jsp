@@ -38,7 +38,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/jquerytagsinput/jquery.tagsinput.min.css" />
     <!-- tagsinput-->
 
-
+    <!--bootstrap select-->
+    <script src="/resources/bootstrap3.3.5/js/bootstrap-select-1.10.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/bootstrap3.3.5/css/bootstrap-select-1.10.0.min.css">
+    <!--bootstrap select-->
 
 </head>
 <body style="padding-top: 20px">
@@ -62,25 +65,11 @@
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="category">分类</label>
                             <div class="col-md-2">
-                                <div class="btn-group" id="category">
-                                    <button class="btn">选择分类</button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">分类一</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">分类二</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">分类三</a>
-                                        </li>
-                                        <li class="divider">
-                                        </li>
-                                        <li>
-                                            <a href="#">新建分类</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <select class="selectpicker" id="category">
+                                    <option>Java</option>
+                                    <option>Scala</option>
+                                    <option>Mysql</option>
+                                </select>
                             </div>
                         </div>
 
