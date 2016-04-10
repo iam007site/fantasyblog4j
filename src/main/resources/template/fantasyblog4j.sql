@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.27)
-# Date: 2016-04-10 15:38:54
+# Date: 2016-04-10 22:26:59
 # Generator: MySQL-Front 5.3  (Build 4.198)
 
 /*!40101 SET NAMES utf8 */;
@@ -24,7 +24,7 @@ CREATE TABLE `p_post` (
 # Data for table "p_post"
 #
 
-INSERT INTO `p_post` VALUES (100000,100000,'aaa','bb',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,'aa','bbb',0,'2016-04-10 15:37:13','2016-04-10 15:37:13');
+INSERT INTO `p_post` VALUES (100000,100000,'aaa','bb',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,'aa','bbb',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100002,100000,'我爱老婆','我和老婆',0,'2016-04-10 15:49:35','2016-04-10 15:49:35'),(100003,100000,'lkaflafajlf','Bootstrap',0,'2016-04-10 21:28:52','2016-04-10 21:28:52');
 
 #
 # Structure for table "p_post_detail"
@@ -44,7 +44,7 @@ CREATE TABLE `p_post_detail` (
 # Data for table "p_post_detail"
 #
 
-INSERT INTO `p_post_detail` VALUES (100000,100000,'<pre>Please write your blog here...fffffffff</pre><blockquote><p>afafafasf</p><p>afasfasf</p></blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>','2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100001,'<p>Please write your blog here...ffffaaaaaaaaaa</p><h1>dddd</h1><pre>afasfasfasfa<br>public static void main(){<br>&nbsp; &nbsp; System.out.println(\"Hello Word\");<br>}</pre>','2016-04-10 15:37:13','2016-04-10 15:37:13');
+INSERT INTO `p_post_detail` VALUES (100000,100000,'<pre>Please write your blog here...fffffffff</pre><blockquote><p>afafafasf</p><p>afasfasf</p></blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>','2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100001,'<p>Please write your blog here...ffffaaaaaaaaaa</p><h1>dddd</h1><pre>afasfasfasfa<br>public static void main(){<br>&nbsp; &nbsp; System.out.println(\"Hello Word\");<br>}</pre>','2016-04-10 15:37:13','2016-04-10 15:37:13'),(100002,100002,'<p>Please write your blog here..我爱老婆</p>','2016-04-10 15:49:35','2016-04-10 15:49:35'),(100003,100003,'<p>fafsfasfasfcaffs</p><p>as<br>fas</p><p>faf</p><p>af</p><p>af</p><p>af</p><p>aF</p><p>af</p><p>aF</p><p>aF</p><p>aF</p><p>asF</p><p>aF</p><p>ff</p><p>f</p><p>F</p>','2016-04-10 21:28:52','2016-04-10 21:28:52');
 
 #
 # Structure for table "p_post_tag"
@@ -67,7 +67,7 @@ CREATE TABLE `p_post_tag` (
 # Data for table "p_post_tag"
 #
 
-INSERT INTO `p_post_tag` VALUES (100000,100000,100000,'ccc',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,100000,'ddd',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100002,100000,100000,'eee',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100003,100000,100001,'cc',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100004,100000,100001,'dd',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100005,100000,100001,'eee',0,'2016-04-10 15:37:13','2016-04-10 15:37:13');
+INSERT INTO `p_post_tag` VALUES (100000,100000,100000,'ccc',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,100000,'ddd',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100002,100000,100000,'eee',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100003,100000,100001,'cc',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100004,100000,100001,'dd',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100005,100000,100001,'eee',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100006,100000,100002,'老婆大人',0,'2016-04-10 15:49:35','2016-04-10 15:49:35'),(100007,100000,100003,'afasfasf',0,'2016-04-10 21:28:52','2016-04-10 21:28:52'),(100008,100000,100003,'afafa',0,'2016-04-10 21:28:52','2016-04-10 21:28:52'),(100009,100000,100003,'fafaf',0,'2016-04-10 21:28:52','2016-04-10 21:28:52');
 
 #
 # Structure for table "test"
