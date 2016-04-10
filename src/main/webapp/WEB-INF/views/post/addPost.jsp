@@ -11,43 +11,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <jsp:include page="../common/head.jsp"></jsp:include>
     <title>发博文</title>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="/resources/bootstrap3.3.5/css/bootstrap.min.css">
-
-    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="/resources/bootstrap3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="/resources/jquery2.1.4/jquery-2.1.4.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="/resources/bootstrap3.3.5/js/bootstrap.min.js"></script>
 
     <!-- include summernote css/js-->
     <link href="/resources/summernote0.8.1/summernote0.8.1.css" rel="stylesheet">
-    <script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
 
     <!-- tagsinput-->
-    <script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/resources/jquerytagsinput/jquery.tagsinput.min.css"/>
     <!-- tagsinput-->
 
     <!--bootstrap select-->
-    <script src="/resources/bootstrap3.3.5/js/bootstrap-select-1.10.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/resources/bootstrap3.3.5/css/bootstrap-select-1.10.0.min.css">
     <!--bootstrap select-->
 
 </head>
-<body style="padding-top: 20px">
+<body style="padding-top: 100px">
+<jsp:include page="../common/nav.jsp"></jsp:include>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-md-9">
             <div class="well well-sm">
-                <form id="postForm" class="form-horizontal" action="/u/post" method="post" enctype="multipart/form-data">
+                <form id="postForm" class="form-horizontal" action="/u/post" method="post"
+                      enctype="multipart/form-data">
                     <fieldset>
                         <legend class="text-center">新建博文</legend>
                         <!-- Name input-->
@@ -95,7 +81,8 @@
                         <!-- Form actions -->
                         <div class="form-group">
                             <div class="col-md-12 text-center" style="width: 100%">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="handlePostForm()">Submit</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="handlePostForm()">Submit
+                                </button>
                             </div>
                         </div>
                     </fieldset>
@@ -186,7 +173,21 @@
     </div>
 </div>
 
+</body>
 
+
+
+<jsp:include page="../common/footer.jsp"></jsp:include>
+<!-- include summernote css/js-->
+<script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
+
+<!-- tagsinput-->
+<script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
+<!-- tagsinput-->
+
+<!--bootstrap select-->
+<script src="/resources/bootstrap3.3.5/js/bootstrap-select-1.10.0.min.js"></script>
+<!--bootstrap select-->
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({
@@ -211,10 +212,10 @@
         });
     });
 
-    function handlePostForm(){
-        if($('#title').val()=='' || $('#category').val()=='' || $('#tags').val()=='' || $('#summernote').summernote('code')==''){
+    function handlePostForm() {
+        if ($('#title').val() == '' || $('#category').val() == '' || $('#tags').val() == '' || $('#summernote').summernote('code') == '') {
             alert("请完成表单");
-        }else{
+        } else {
             var text = $('#summernote').summernote('code');
             $('#content').val(text);
             $('#postForm').submit();
@@ -230,5 +231,4 @@
      }*/
 
 </script>
-</body>
 </html>

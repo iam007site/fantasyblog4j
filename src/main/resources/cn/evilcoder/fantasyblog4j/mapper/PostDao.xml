@@ -29,6 +29,16 @@
         <result column="ctime" property="ctime"/>
         <result column="mtime" property="mtime"/>
     </resultMap>
+    <resultMap id="PostDetailModelMap" type="postDetailModel">
+        <result column="post_uid" property="uid"/>
+        <result column="post_username" property="username"/>
+        <result column="post_id" property="pid"/>
+        <result column="post_title" property="title"/>
+        <result column="post_content" property="content"/>
+        <result column="post_category" property="category"/>
+        <result column="post_visit_time" property="visitTime"/>
+        <result column="post_ctime" property="ctime"/>
+    </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
         p_post(uid,title,category,visit_time,ctime,mtime)
@@ -39,4 +49,19 @@
         p_post_detail(pid,content,ctime,mtime)
         values(#{pid},#{content},#{ctime},#{ctime})
     </insert>
+    <select id="selectPostDetail" parameterType="long" resultMap="PostDetailModelMap" >
+        SELECT
+            P.id AS post_id,
+            P.title AS post_title,
+            D.content AS post_content,
+            P.category AS post_category,
+            p.visit_time AS post_visit_time,
+            p.ctime AS post_ctime,
+            u.id AS post_uid,
+            u.username AS post_username
+        FROM p_post P
+            LEFT JOIN u_user U on P.uid = U.id
+            LEFT JOIN p_post_detail D ON D.pid = P.id
+        WHERE P.id = #{pid}
+    </select>
 </mapper>

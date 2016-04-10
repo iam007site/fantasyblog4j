@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.27)
-# Date: 2016-04-08 21:51:10
+# Date: 2016-04-10 15:38:54
 # Generator: MySQL-Front 5.3  (Build 4.198)
 
 /*!40101 SET NAMES utf8 */;
@@ -13,9 +13,8 @@ CREATE TABLE `p_post` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `uid` bigint(20) NOT NULL DEFAULT '0',
   `title` varchar(500) NOT NULL DEFAULT '',
-  `content` longtext,
   `category` varchar(50) NOT NULL DEFAULT '',
-  `visist_time` int(11) NOT NULL DEFAULT '0',
+  `visit_time` int(11) NOT NULL DEFAULT '0',
   `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
@@ -25,6 +24,27 @@ CREATE TABLE `p_post` (
 # Data for table "p_post"
 #
 
+INSERT INTO `p_post` VALUES (100000,100000,'aaa','bb',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,'aa','bbb',0,'2016-04-10 15:37:13','2016-04-10 15:37:13');
+
+#
+# Structure for table "p_post_detail"
+#
+
+DROP TABLE IF EXISTS `p_post_detail`;
+CREATE TABLE `p_post_detail` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pid` bigint(20) NOT NULL DEFAULT '0',
+  `content` longtext,
+  `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "p_post_detail"
+#
+
+INSERT INTO `p_post_detail` VALUES (100000,100000,'<pre>Please write your blog here...fffffffff</pre><blockquote><p>afafafasf</p><p>afasfasf</p></blockquote><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>','2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100001,'<p>Please write your blog here...ffffaaaaaaaaaa</p><h1>dddd</h1><pre>afasfasfasfa<br>public static void main(){<br>&nbsp; &nbsp; System.out.println(\"Hello Word\");<br>}</pre>','2016-04-10 15:37:13','2016-04-10 15:37:13');
 
 #
 # Structure for table "p_post_tag"
@@ -34,17 +54,20 @@ DROP TABLE IF EXISTS `p_post_tag`;
 CREATE TABLE `p_post_tag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `uid` bigint(20) NOT NULL DEFAULT '0',
+  `pid` bigint(20) NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
   `num` int(11) NOT NULL DEFAULT '0',
   `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user_post_tag_index` (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8 COMMENT='post tag table';
 
 #
 # Data for table "p_post_tag"
 #
 
+INSERT INTO `p_post_tag` VALUES (100000,100000,100000,'ccc',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100001,100000,100000,'ddd',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100002,100000,100000,'eee',0,'2016-04-10 15:33:26','2016-04-10 15:33:26'),(100003,100000,100001,'cc',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100004,100000,100001,'dd',0,'2016-04-10 15:37:13','2016-04-10 15:37:13'),(100005,100000,100001,'eee',0,'2016-04-10 15:37:13','2016-04-10 15:37:13');
 
 #
 # Structure for table "test"

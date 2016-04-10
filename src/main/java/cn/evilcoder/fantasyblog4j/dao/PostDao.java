@@ -2,6 +2,8 @@ package cn.evilcoder.fantasyblog4j.dao;
 
 import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.domain.PostDetail;
+import cn.evilcoder.fantasyblog4j.domain.PostDetailModel;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * User: evilcoder
@@ -11,6 +13,6 @@ import cn.evilcoder.fantasyblog4j.domain.PostDetail;
 public interface PostDao {
   public long insertPost(Post post);
   public long insertPostDetail(PostDetail PostDetail);
-//  public Post selectDetail(@Param("pid") long pid);
+  public PostDetailModel selectPostDetail(@Param("pid") long pid);
 
 }
