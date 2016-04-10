@@ -1,15 +1,13 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
+import cn.evilcoder.fantasyblog4j.controller.forms.NewPostForm;
 import cn.evilcoder.fantasyblog4j.domain.User;
 import cn.evilcoder.fantasyblog4j.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -51,15 +49,14 @@ public class UserController {
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
     public String home(){
-        return "posy/addPost";
+        return "post/addPost";
     }
     @RequestMapping(value = "post",method = RequestMethod.GET)
     public String addPostPage(){
         return "post/addPost";
     }
-    @RequestMapping(value = "post",method = RequestMethod.POST)
-    public String addPostSubmit(@RequestParam("editor") String editor){
-        logger.info("editor content=== " + editor);
+    @RequestMapping(value = "post",method = RequestMethod.POST,params = {"title","category","tags","content"})
+    public String addPostSubmit(@ModelAttribute NewPostForm form){
         return "post/home";
     }
 
