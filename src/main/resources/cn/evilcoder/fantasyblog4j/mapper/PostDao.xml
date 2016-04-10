@@ -64,4 +64,10 @@
             LEFT JOIN p_post_detail D ON D.pid = P.id
         WHERE P.id = #{pid}
     </select>
+
+    <update id="addPostViewTime" parameterType="long">
+        UPDATE p_post
+        SET visit_time = visit_time+1
+        WHERE id = #{pid}
+    </update>
 </mapper>

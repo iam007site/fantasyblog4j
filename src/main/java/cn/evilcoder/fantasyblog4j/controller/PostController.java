@@ -29,6 +29,7 @@ public class PostController {
     PostDetailModel model = postService.selectDetail(pid);
     request.setAttribute("post",model);
     if(model!=null && model.getUid()>0){
+
       ArrayList<KeyValue> popTags = postService.getUserTags(model.getUid());
       request.setAttribute("popTags",popTags);
     }

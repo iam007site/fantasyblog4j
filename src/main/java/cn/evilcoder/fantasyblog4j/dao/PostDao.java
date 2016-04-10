@@ -14,5 +14,5 @@ public interface PostDao {
   public long insertPost(Post post);
   public long insertPostDetail(PostDetail PostDetail);
   public PostDetailModel selectPostDetail(@Param("pid") long pid);
-
+  public int addPostViewTime(@Param("pid") long pid);
 }

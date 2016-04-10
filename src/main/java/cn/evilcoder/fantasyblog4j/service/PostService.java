@@ -16,4 +16,5 @@ public interface PostService {
   public boolean insertPost(Post post,String tagStr,String content);
   public PostDetailModel selectDetail(long pid);
   public ArrayList<KeyValue> getUserTags(long uid);
+  public int addPostViewTime(long pid);
 }

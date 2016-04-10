@@ -29,14 +29,45 @@
 
                 <!-- the actual blog post: title/author/date/content -->
                 <h1><a href="/post/detail/${post.pid}"><c:out value="${post.title}"></c:out></a></h1>
-                <p class="lead">
-                    <i class="fa fa-user"></i> by <a href=""><c:out value="${post.username}"></c:out></a>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                    <i class="fa fa-calendar"></i> Posted on <fmt:formatDate value="${post.ctime}" type="both"/>
-                </p>
+                <div class="row">
+                    <div class="col-md-12 post-header-line">
+                        <span class="glyphicon glyphicon-user"></span>by <a href="#"><c:out value="${post.username}"></c:out></a> |
+                        <span class="glyphicon glyphicon-calendar"></span><fmt:formatDate value="${post.ctime}" type="date"/>|
+                        <span class="glyphicon glyphicon-comment"></span><a href="#">3 Comments</a> |
+                        <i class="icon-share"></i><a href="#">39 Shares</a> |
+                        <span class="glyphicon glyphicon-tags"></span>Tags :
+                        <c:forEach items="${post.tags}" var="tag">
+                            <a href="#">
+                                <span class="label label-info" style="margin-left: 5px">
+                                    <c:out value="${post.category}"></c:out>
+                            </span>
+                            </a>
+                        </c:forEach>
+                    </div>
+                </div>
                 <hr>
-                <p></p>
-                <p>
+<%--                <p>
+                    <i class="fa fa-share"></i>
+                    shares:
+                    <a href="">
+                    <span class="btn btn-success badge badge-info">
+                           14
+                    </span>
+                    </a>
+                    <i class="fa fa-comment"></i>
+                    Comments:
+                    <a href="">
+                    <span class="btn btn-success badge badge-info">
+                           7
+                    </span>
+                    </a>
+                    <i class="fa fa-folder-open"></i>
+                    Views:
+                    <a href="">
+                    <span class="btn btn-success badge badge-info">
+                           <c:out value="${post.visitTime}"></c:out>
+                    </span>
+                    </a>
                     <i class="fa fa-tags"></i>
                     Category:
                     <a href="">
@@ -54,7 +85,7 @@
                         </span>
                         </a>
                     </c:forEach>
-                </p>
+                </p>--%>
 
                 <div class="container">
                     <br>
@@ -112,7 +143,7 @@
                     <h4><i class="fa fa-tags"></i> Popular Tags:</h4>
                     <div class="row">
                         <c:forEach items="${popTags}" var="map">
-                            <label class="col-md-6 category-select">
+                            <label class="col-md-6">
                             <span style="margin: 4px" class="btn btn-success badge badge-info">
                                 <c:out value="${map.k}"></c:out>(<c:out value="${map.v}"></c:out>)
                             </span>

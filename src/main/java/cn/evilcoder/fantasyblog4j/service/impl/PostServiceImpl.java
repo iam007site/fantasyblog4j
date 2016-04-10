@@ -70,4 +70,9 @@ public class PostServiceImpl implements PostService {
   public ArrayList<KeyValue> getUserTags(long uid) {
     return postTagDao.selectUserPopularTags(uid);
   }
+
+  @Override
+  public int addPostViewTime(long pid) {
+    return postDao.addPostViewTime(pid);
+  }
 }
