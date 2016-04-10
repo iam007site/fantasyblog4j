@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2009-2012 the original author or authors. Licensed under the
+	Apache License, Version 2.0 (the "License"); you may not use this file except
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+	Unless required by applicable law or agreed to in writing, software distributed
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for
+	the specific language governing permissions and limitations under the License. -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.evilcoder.fantasyblog4j.dao.PostDao">
+    <resultMap id="PostMap" type="post">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="title" property="title"/>
+        <result column="category" property="category"/>
+        <result column="visit_time" property="visitTime"/>
+        <result column="ctime" property="ctime"/>
+        <result column="mtime" property="mtime"/>
+    </resultMap>
+    <resultMap id="PostDetailMap" type="postDetail">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="content" property="content"/>
+        <result column="ctime" property="ctime"/>
+        <result column="mtime" property="mtime"/>
+    </resultMap>
+    <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
+        insert into
+        p_post(uid,title,category,visit_time,ctime,mtime)
+        values(#{uid},#{title},#{category},#{visitTime},#{ctime},#{ctime})
+    </insert>
+    <insert id="insertPostDetail" useGeneratedKeys="true" parameterType="postDetail" keyProperty="id">
+        insert into
+        p_post_detail(pid,content,ctime,mtime)
+        values(#{pid},#{content},#{ctime},#{ctime})
+    </insert>
+</mapper>

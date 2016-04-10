@@ -1,7 +1,7 @@
 package cn.evilcoder.fantasyblog4j.dao;
 
 import cn.evilcoder.fantasyblog4j.domain.Post;
-import org.apache.ibatis.annotations.Param;
+import cn.evilcoder.fantasyblog4j.domain.PostDetail;
 
 /**
  * User: evilcoder
@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Param;
  * Time: 13:08
  */
 public interface PostDao {
-  public long insert(@Param("post")Post post);
-  public Post selectDetail(@Param("pid") long pid);
+  public long insertPost(Post post);
+  public long insertPostDetail(PostDetail PostDetail);
+//  public Post selectDetail(@Param("pid") long pid);
 
 }

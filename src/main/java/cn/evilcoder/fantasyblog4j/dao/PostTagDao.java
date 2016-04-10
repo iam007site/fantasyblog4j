@@ -11,6 +11,8 @@ import java.util.ArrayList;
  * Time: 12:58
  */
 public interface PostTagDao {
-  public long insert(@Param("postTag")PostTag postTag);
+  public long insert(PostTag postTag);
+  public void insertBatch(@Param("tags") ArrayList<PostTag> tags);
   public ArrayList<PostTag> selectAll(@Param("uid") long uid);
+
 }

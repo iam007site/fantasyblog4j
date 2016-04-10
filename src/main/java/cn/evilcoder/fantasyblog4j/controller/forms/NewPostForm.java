@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class NewPostForm implements Serializable {
   private String title;
   private String category;
-  private String tag;
+  private String tags;
   private String content;
 
   public String getTitle() {
@@ -29,12 +29,12 @@ public class NewPostForm implements Serializable {
     this.category = category;
   }
 
-  public String getTag() {
-    return tag;
+  public String getTags() {
+    return tags;
   }
 
-  public void setTag(String tag) {
-    this.tag = tag;
+  public void setTags(String tags) {
+    this.tags = tags;
   }
 
   public String getContent() {

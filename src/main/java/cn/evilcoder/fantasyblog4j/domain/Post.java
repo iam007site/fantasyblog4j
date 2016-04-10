@@ -9,9 +9,9 @@ public class Post extends BaseDomain{
 
   private long uid;
   private String title;
-  private String content;
   private String category;
   private int visitTime;
+
 
   public long getUid() {
     return uid;
@@ -27,14 +27,6 @@ public class Post extends BaseDomain{
 
   public void setTitle(String title) {
     this.title = title;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
   }
 
   public String getCategory() {

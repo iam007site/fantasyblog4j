@@ -27,6 +27,16 @@
     <insert id="insert" useGeneratedKeys="true" parameterType="postTag" keyProperty="id">
         insert into p_post_tag(uid,pid,name,num,ctime,mtime) values(#{uid},#{pid},#{name},#{num},#{ctime},#{mtime})
     </insert>
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        <selectKey resultType="long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        insert into p_post_tag(uid,pid,name,num,ctime,mtime) VALUES
+        <foreach collection="tags" item="tag" index="index" separator=",">
+            (#{tag.uid},#{tag.pid},#{tag.name},#{tag.num},#{tag.ctime},#{tag.mtime})
+        </foreach>
+    </insert>
     <select id="selectAll" resultMap="PostTagMap" parameterType="long" useCache="true">
         select * FROM  p_post_tag WHERE uid = #{uid}
     </select>
