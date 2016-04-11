@@ -20,7 +20,7 @@
     <link href="/resources/fontawesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="../common/nav.jsp"></jsp:include>
+<jsp:include page="../common/nav.jsp"/>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -28,18 +28,24 @@
             <div class="col-md-9">
 
                 <!-- the actual blog post: title/author/date/content -->
-                <h1><a href="/post/detail/${post.pid}"><c:out value="${post.title}"></c:out></a></h1>
+                <h1><a href="/post/detail/${post.pid}"><c:out value="${post.title}"/></a></h1>
                 <div class="row">
                     <div class="col-md-12 post-header-line">
-                        <span class="glyphicon glyphicon-user"></span>by <a href="#"><c:out value="${post.username}"></c:out></a> |
+                        <span class="glyphicon glyphicon-user"></span>by <a href="#"><c:out value="${post.username}"/></a> |
                         <span class="glyphicon glyphicon-calendar"></span><fmt:formatDate value="${post.ctime}" type="date"/>|
                         <span class="glyphicon glyphicon-comment"></span><a href="#">3 Comments</a> |
                         <i class="icon-share"></i><a href="#">39 Shares</a> |
+                        <span class="glyphicon glyphicon-tags"></span>Category :
+                        <a href="#">
+                                <span class="label label-info" style="margin-left: 5px">
+                                    <c:out value="${post.category}"/>
+                            </span>
+                        </a> &nbsp;|
                         <span class="glyphicon glyphicon-tags"></span>Tags :
                         <c:forEach items="${post.tags}" var="tag">
                             <a href="#">
                                 <span class="label label-info" style="margin-left: 5px">
-                                    <c:out value="${post.category}"></c:out>
+                                    <c:out value="${tag}"/>
                             </span>
                             </a>
                         </c:forEach>

@@ -38,6 +38,10 @@
         <result column="post_category" property="category"/>
         <result column="post_visit_time" property="visitTime"/>
         <result column="post_ctime" property="ctime"/>
+        <collection property="tags" ofType="string" javaType="ArrayList">
+            <result column="post_tag" property="tags"/>
+        </collection>
+
     </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
@@ -58,11 +62,14 @@
             p.visit_time AS post_visit_time,
             p.ctime AS post_ctime,
             u.id AS post_uid,
-            u.username AS post_username
+            u.username AS post_username,
+            PT.name AS post_tag
         FROM p_post P
             LEFT JOIN u_user U on P.uid = U.id
             LEFT JOIN p_post_detail D ON D.pid = P.id
+            LEFT JOIN p_post_tag PT ON PT.pid = P.id
         WHERE P.id = #{pid}
+        limit 1
     </select>
 
     <update id="addPostViewTime" parameterType="long">
