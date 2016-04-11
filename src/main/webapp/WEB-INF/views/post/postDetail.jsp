@@ -52,50 +52,9 @@
                     </div>
                 </div>
                 <hr>
-<%--                <p>
-                    <i class="fa fa-share"></i>
-                    shares:
-                    <a href="">
-                    <span class="btn btn-success badge badge-info">
-                           14
-                    </span>
-                    </a>
-                    <i class="fa fa-comment"></i>
-                    Comments:
-                    <a href="">
-                    <span class="btn btn-success badge badge-info">
-                           7
-                    </span>
-                    </a>
-                    <i class="fa fa-folder-open"></i>
-                    Views:
-                    <a href="">
-                    <span class="btn btn-success badge badge-info">
-                           <c:out value="${post.visitTime}"></c:out>
-                    </span>
-                    </a>
-                    <i class="fa fa-tags"></i>
-                    Category:
-                    <a href="">
-                    <span class="btn btn-success badge badge-info">
-                           <c:out value="${post.category}"></c:out>
-                    </span>
-                    </a>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                    <i class="fa fa-tags"></i>
-                    Tags:
-                    <c:forEach var="tag" items="${post.tags}">
-                        <a href="">
-                        <span class="btn btn-success badge badge-info">
-                           <c:out value="${tag}"></c:out>
-                        </span>
-                        </a>
-                    </c:forEach>
-                </p>--%>
-
                 <div class="container">
                     <br>
-                    <c:out value="${post.content}" default="无法显示博文" escapeXml="false"></c:out>
+                    <c:out value="${post.content}" default="无法显示博文" escapeXml="false"/>
                     <br>
                 </div>
                 <p><h4>I like the post? Like this!</h4></p>

@@ -1,9 +1,9 @@
 package cn.evilcoder.fantasyblog4j.dao;
 
-import cn.evilcoder.fantasyblog4j.domain.Post;
-import cn.evilcoder.fantasyblog4j.domain.PostDetail;
-import cn.evilcoder.fantasyblog4j.domain.PostDetailModel;
+import cn.evilcoder.fantasyblog4j.domain.*;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.ArrayList;
 
 /**
  * User: evilcoder
@@ -15,4 +15,5 @@ public interface PostDao {
   public long insertPostDetail(PostDetail PostDetail);
   public PostDetailModel selectPostDetail(@Param("pid") long pid);
   public int addPostViewTime(@Param("pid") long pid);
+  public ArrayList<PostItemModel> search(QueryModel queryModel);
 }

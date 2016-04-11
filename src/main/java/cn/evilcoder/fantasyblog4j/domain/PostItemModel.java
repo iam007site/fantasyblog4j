@@ -1,24 +1,22 @@
 package cn.evilcoder.fantasyblog4j.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * User: Huangshanqi
  * Date: 2016/4/11
- * Time: 16:18
+ * Time: 17:30
  */
-public class PostDetailModel1 implements Serializable {
+public class PostItemModel {
     private long uid;
     private String username;
     private long pid;
     private String title;
-    private String content;
     private String category;
     private int visitTime;
     private Date ctime;
-    private ArrayList<PostTag> tags;
+    private ArrayList<String> tags;
 
     public long getUid() {
         return uid;
@@ -52,14 +50,6 @@ public class PostDetailModel1 implements Serializable {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -84,11 +74,11 @@ public class PostDetailModel1 implements Serializable {
         this.ctime = ctime;
     }
 
-    public ArrayList<PostTag> getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<PostTag> tags) {
+    public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 }

@@ -75,4 +75,9 @@ public class PostServiceImpl implements PostService {
   public int addPostViewTime(long pid) {
     return postDao.addPostViewTime(pid);
   }
+
+  @Override
+  public ArrayList<PostItemModel> search(QueryModel queryModel) {
+    return postDao.search(queryModel);
+  }
 }

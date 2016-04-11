@@ -2,6 +2,7 @@ package cn.evilcoder.fantasyblog4j.controller;
 
 import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.PostDetailModel;
+import cn.evilcoder.fantasyblog4j.domain.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.QueryModel;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import org.slf4j.Logger;
@@ -39,9 +40,9 @@ public class PostController {
         return "post/postDetail";
     }
 
-    @ResponseBody
     @RequestMapping(value = "search/{page}", method = RequestMethod.GET,params = {"kw","cat","tag"})
-    public Object postList(@PathVariable("page") int page,
+    public String postList(HttpServletRequest request,
+                           @PathVariable("page") int page,
                            @RequestParam(value = "kw",required = false)String keyword,
                            @RequestParam(value = "cat",required = false)String category,
                            @RequestParam(value = "tag",required = false)String tag) {
@@ -59,7 +60,8 @@ public class PostController {
             queryModel.setTag(tag);
         }
 
-//        return "post/listPost";
-        return queryModel;
+        ArrayList<PostItemModel> list = postService.search(queryModel);
+        request.setAttribute("posts",list);
+        return "post/listPost";
     }
 }

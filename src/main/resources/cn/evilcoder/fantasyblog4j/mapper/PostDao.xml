@@ -41,7 +41,19 @@
         <collection property="tags" ofType="string" javaType="ArrayList">
             <result column="post_tag" property="tags"/>
         </collection>
+    </resultMap>
 
+    <resultMap id="PostItemModelMap" type="postItemModel">
+        <result column="post_uid" property="uid"/>
+        <result column="post_username" property="username"/>
+        <result column="post_id" property="pid"/>
+        <result column="post_title" property="title"/>
+        <result column="post_category" property="category"/>
+        <result column="post_visit_time" property="visitTime"/>
+        <result column="post_ctime" property="ctime"/>
+        <collection property="tags" ofType="string" javaType="ArrayList">
+            <result column="post_tag" property="tags"/>
+        </collection>
     </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
@@ -78,4 +90,19 @@
         WHERE id = #{pid}
     </update>
 
+    <select id="search" resultMap="PostItemModelMap" useCache="true" parameterType="queryModel">
+        SELECT
+            P.id AS post_id,
+            P.title AS post_title,
+            P.category AS post_category,
+            p.visit_time AS post_visit_time,
+            p.ctime AS post_ctime,
+            u.id AS post_uid,
+            u.username AS post_username,
+            PT.name AS post_tag
+        FROM p_post P
+            LEFT JOIN u_user U on P.uid = U.id
+            LEFT JOIN p_post_tag PT ON PT.pid = P.id
+        ORDER BY post_ctime DESC limit #{offset},#{pageSize}
+    </select>
 </mapper>
