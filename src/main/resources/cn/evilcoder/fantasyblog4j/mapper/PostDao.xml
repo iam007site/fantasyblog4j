@@ -70,4 +70,5 @@
         SET visit_time = visit_time+1
         WHERE id = #{pid}
     </update>
+
 </mapper>
