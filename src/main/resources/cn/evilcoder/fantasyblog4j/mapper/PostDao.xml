@@ -72,7 +72,7 @@
             D.content AS post_content,
             P.category AS post_category,
             p.visit_time AS post_visit_time,
-            p.ctime AS post_ctime,
+            P.ctime AS post_ctime,
             u.id AS post_uid,
             u.username AS post_username,
             PT.name AS post_tag
@@ -95,7 +95,7 @@
             P.id AS post_id,
             P.title AS post_title,
             P.category AS post_category,
-            p.visit_time AS post_visit_time,
+            P.visit_time AS post_visit_time,
             p.ctime AS post_ctime,
             u.id AS post_uid,
             u.username AS post_username,

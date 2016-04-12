@@ -1,6 +1,6 @@
-﻿# Host: 127.0.0.1  (Version: 5.5.43)
-# Date: 2016-04-12 17:22:28
-# Generator: MySQL-Front 5.3  (Build 4.233)
+﻿# Host: localhost  (Version: 5.5.27)
+# Date: 2016-04-12 21:55:46
+# Generator: MySQL-Front 5.3  (Build 4.198)
 
 /*!40101 SET NAMES utf8 */;
 
@@ -24,6 +24,7 @@ CREATE TABLE `p_post` (
 # Data for table "p_post"
 #
 
+
 #
 # Structure for table "p_post_detail"
 #
@@ -41,6 +42,7 @@ CREATE TABLE `p_post_detail` (
 #
 # Data for table "p_post_detail"
 #
+
 
 #
 # Structure for table "p_post_tag"
@@ -63,9 +65,24 @@ CREATE TABLE `p_post_tag` (
 # Data for table "p_post_tag"
 #
 
+
 #
 # Structure for table "test"
 #
+
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100005 DEFAULT CHARSET=utf8 COMMENT='for test';
+
+#
+# Data for table "test"
+#
+
+INSERT INTO `test` VALUES (100000,'hsq','1312'),(100001,'hsq','1312'),(100002,'hsq','1312'),(100003,'hsq','1312'),(100004,'hsq','1312');
 
 #
 # Structure for table "u_user"
