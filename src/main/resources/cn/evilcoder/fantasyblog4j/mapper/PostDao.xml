@@ -71,7 +71,7 @@
             P.title AS post_title,
             D.content AS post_content,
             P.category AS post_category,
-            p.visit_time AS post_visit_time,
+            P.visit_time AS post_visit_time,
             P.ctime AS post_ctime,
             u.id AS post_uid,
             u.username AS post_username,
