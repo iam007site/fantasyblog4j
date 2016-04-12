@@ -101,8 +101,23 @@
             u.username AS post_username,
             PT.name AS post_tag
         FROM p_post P
-            LEFT JOIN u_user U on P.uid = U.id
+            LEFT JOIN
+            u_user U on P.uid = U.id
             LEFT JOIN p_post_tag PT ON PT.pid = P.id
+            <where>
+                <if test="uid > 0">
+                    P.uid = #{uid}
+                </if>
+                <if test="category != null">
+                    AND P.category = #{category}
+                </if>
+                <if test="tag != null">
+                    AND PT.name = #{tag}
+                </if>
+                <if test="keyword != null">
+                    AND (P.title LIKE CONCAT('%',#{keyword},'%') OR PT.name LIKE CONCAT('%',#{keyword},'%'))
+                </if>
+            </where>
         ORDER BY post_ctime DESC limit #{offset},#{pageSize}
     </select>
 </mapper>

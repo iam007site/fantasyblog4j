@@ -8,11 +8,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../common/head.jsp"></jsp:include>
+    <jsp:include page="../common/head.jsp"/>
     <title>Title</title>
     <link type="text/css" rel="stylesheet" href="/resources/post/css/listPost.css">
 </head>
@@ -33,19 +34,19 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 post-header-line">
-                                <span class="glyphicon glyphicon-user"></span>by <a href="#"><c:out value="${post.username}"/></a> |
-                                <span class="glyphicon glyphicon-calendar"> </span>2015-04-11<%--<fmt:formatDate value="${post.ctime}" type="date"/>--%> |
+                                <span class="glyphicon glyphicon-user"></span>by <a href="/post/search/${post.uid}/0/0/1?kw="><c:out value="${post.username}"/></a> |
+                                <span class="glyphicon glyphicon-calendar"> </span><fmt:formatDate value="${post.ctime}" type="date" /> |
                                 <span class="glyphicon glyphicon-comment"></span><a href="#"> 3 Comments</a> |
                                 <i class="icon-share"></i><a href="#">39 Shares</a> |
                                 <span class="glyphicon glyphicon-tags"></span>Category :
-                                <a href="#">
+                                <a href="/post/search/${query.uid}/${post.category}/0/1?kw=">
                                 <span class="label label-info" style="margin-left: 5px">
                                     <c:out value="${post.category}"/>
                                 </span
-                                </a>
+                                </a>&nbsp;|
                                 <span class="glyphicon glyphicon-tags"></span>Tags :
                                     <c:forEach items="${post.tags}" var="tag">
-                                        <a href="#">
+                                        <a href="/post/search/${query.uid}/0/${tag}/1?kw=">
                                             <span class="label label-info" style="margin-left: 5px">
                                                 <c:out value="${tag}"/>
                                             </span>
@@ -57,11 +58,34 @@
                     </c:forEach>
                 </div>
             </div>
+            <div class="row">
+                <nav>
+                    <ul class="pager">
+                       <c:choose>
+                           <c:when test="${query.page>1}">
+                               <li class="previous"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page-1}?kw="><span aria-hidden="true">&larr;</span> Older</a></li>
+                           </c:when>
+                           <c:otherwise>
+                               <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+                           </c:otherwise>
+                       </c:choose>
+                        <c:choose>
+                            <c:when test="${fn:length(list) }=${query.pageSize}">
+                                <li class="next"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page+1}?kw=">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
 </div>
 </div>
 </body>
-<jsp:include page="../common/footer.jsp"></jsp:include>
+<jsp:include page="../common/footer.jsp"/>
 </html>

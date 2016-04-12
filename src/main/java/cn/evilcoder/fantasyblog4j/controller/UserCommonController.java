@@ -26,6 +26,11 @@ public class UserCommonController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "home",method = RequestMethod.GET)
+    public String homePage(){
+        return "/home";
+    }
+
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public String loginPage(){
         return "u/loginPage";
@@ -43,7 +48,7 @@ public class UserCommonController {
         session.setAttribute(LoginSession.TOKEN_KEY,TokenUtils.genToken(user.getUsername(),user.getId()));
         session.setAttribute(LoginSession.USERNAME_KEY,user.getUsername());
         request.setAttribute("username",user.getUsername());
-        return "u/home";
+        return "redirect:/post/search/"+user.getId()+"/0/0/1?kw=";
     }
 
     @RequestMapping(value = "logout",method = RequestMethod.GET)

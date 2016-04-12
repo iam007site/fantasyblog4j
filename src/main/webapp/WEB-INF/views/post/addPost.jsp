@@ -172,12 +172,9 @@
         </div>
     </div>
 </div>
-
 </body>
 
-
-
-<jsp:include page="../common/footer.jsp"></jsp:include>
+<jsp:include page="../common/footer.jsp"/>
 <!-- include summernote css/js-->
 <script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
 

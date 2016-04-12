@@ -8,12 +8,21 @@ import java.io.Serializable;
  * Time: 11:46
  */
 public class QueryModel implements Serializable {
+    private long uid;
     private int page=1;
     private int pageSize = 15;
     private int offset = 0;
     private String category;
     private String tag;
     private String keyword;
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
 
     public int getPage() {
         return page;

@@ -40,28 +40,27 @@ public class PostController {
         return "post/postDetail";
     }
 
-    @RequestMapping(value = "search/{page}", method = RequestMethod.GET,params = {"kw","cat","tag"})
+    @RequestMapping(value = "search/{uid}/{cat}/{tag}/{page}", method = RequestMethod.GET,params = {"kw"})
     public String postList(HttpServletRequest request,
-                           @PathVariable("page") int page,
-                           @RequestParam(value = "kw",required = false)String keyword,
-                           @RequestParam(value = "cat",required = false)String category,
-                           @RequestParam(value = "tag",required = false)String tag) {
+                           @PathVariable("uid") long uid,
+                           @PathVariable(value = "cat")String category,
+                           @PathVariable(value = "tag")String tag,
+                           @PathVariable(value = "page")int page,
+                           @RequestParam(value = "kw",required = false)String keyword) {
 
         page = page>0?page:1;
         QueryModel queryModel = new QueryModel();
+        queryModel.setUid(uid);
+        queryModel.setCategory(category.equals("0")?null:category);
+        queryModel.setTag(tag.equals("0")?null:tag);
+        queryModel.setKeyword(!StringUtils.isEmpty(keyword)?null:keyword);
         queryModel.setPage(page);
-        if(!StringUtils.isEmpty(keyword)){
-            queryModel.setKeyword(keyword);
-        }
-        if(!StringUtils.isEmpty(category)){
-            queryModel.setCategory(category);
-        }
-        if(!StringUtils.isEmpty(tag)){
-            queryModel.setTag(tag);
-        }
-
         ArrayList<PostItemModel> list = postService.search(queryModel);
         request.setAttribute("posts",list);
+        queryModel.setCategory(category);
+        queryModel.setTag(tag);
+        queryModel.setKeyword(keyword);
+        request.setAttribute("query",queryModel);
         return "post/listPost";
     }
 }

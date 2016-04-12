@@ -12,8 +12,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><c:out value="${post.title}"></c:out></title>
-    <jsp:include page="../common/head.jsp"></jsp:include>
+    <title><c:out value="${post.title}"/></title>
+    <jsp:include page="../common/head.jsp"/>
 
     <!-- Add custom CSS here -->
     <link href="/resources/post/css/postDetail.css" rel="stylesheet">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="container">
+                <div class="container well">
                     <br>
                     <c:out value="${post.content}" default="无法显示博文" escapeXml="false"/>
                     <br>
@@ -108,11 +108,16 @@
                     <h4><i class="fa fa-tags"></i> Popular Tags:</h4>
                     <div class="row">
                         <c:forEach items="${popTags}" var="map">
-                            <label class="col-md-6">
+                           <%-- <label class="col-md-6">
                             <span style="margin: 4px" class="btn btn-success badge badge-info">
                                 <c:out value="${map.k}"></c:out>(<c:out value="${map.v}"></c:out>)
                             </span>
-                            </label>
+                            </label>--%>
+                            <a href="#">
+                                <span class="btn btn-info btn-sm" style="margin-left: 5px ;margin-top:2px">
+                                    <c:out value="${map.k}"/>(&nbsp;<c:out value="${map.v}"/>&nbsp;)
+                                </span>
+                            </a>
                         </c:forEach>
 
                     </div>

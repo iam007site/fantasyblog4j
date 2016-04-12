@@ -56,15 +56,16 @@ public class UserController {
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
     public String home(){
-        return "post/addPost";
+        return "forward:/post/search/0/0/0/1?kw";
     }
+
     @RequestMapping(value = "post",method = RequestMethod.GET)
     public String addPostPage(){
         return "post/addPost";
     }
-    @ResponseBody
+
     @RequestMapping(value = "post",method = RequestMethod.POST,params = {"title","category","tags","content"})
-    public Object addPostSubmit(HttpServletRequest request, @ModelAttribute NewPostForm form){
+    public String addPostSubmit(HttpServletRequest request, @ModelAttribute NewPostForm form){
         long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
         Post post = new Post();
         post.setTitle(form.getTitle());
@@ -74,7 +75,12 @@ public class UserController {
         post.setCtime(new Date());
         post.setMtime(post.getCtime());
         postService.insertPost(post,form.getTags(),form.getContent());
-        return post.getId();
+        if(post.getId()>0){
+            return "redirect:/post/detail/"+post.getId();
+        }else{
+            return "redirect:/u/post";
+        }
+
     }
 
 }

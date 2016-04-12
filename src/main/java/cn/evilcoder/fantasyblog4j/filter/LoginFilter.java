@@ -29,7 +29,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpServletResponse httpResponse = (HttpServletResponse)response;
-        if(httpRequest.getRequestURI().startsWith("/u")){
+        if(httpRequest.getRequestURI().startsWith("/u/")){
            HttpSession  session = httpRequest.getSession();
             if(session.getAttribute(LoginSession.TOKEN_KEY)==null){
                 httpResponse.sendRedirect("/login");
