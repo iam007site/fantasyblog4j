@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Fantasyblog4j</a>
+            <a class="navbar-brand pull-left" href="/">Fantasyblog4j</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +26,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/"><i class="fa fa-home"></i> Home</a>
                 </li>
-                <li class="active"><a href=""><i class="fa fa-book"></i> Posts</a>
+                <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> Posts</a>
                 </li>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> Contact</a>
                 </li>
