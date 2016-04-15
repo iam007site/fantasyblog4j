@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Maps '/' requests to the 'home' view -->
-	<mvc:view-controller path="/" view-name="home" />
+	<!--<mvc:view-controller path="/" view-name="home" />-->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="false">
 			<bean id="jacksonMessageConverter"

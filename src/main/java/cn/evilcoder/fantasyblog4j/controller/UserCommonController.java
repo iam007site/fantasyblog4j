@@ -1,7 +1,10 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
 import cn.evilcoder.fantasyblog4j.commons.LoginSession;
+import cn.evilcoder.fantasyblog4j.domain.PostItemModel;
+import cn.evilcoder.fantasyblog4j.domain.QueryModel;
 import cn.evilcoder.fantasyblog4j.domain.User;
+import cn.evilcoder.fantasyblog4j.service.PostService;
 import cn.evilcoder.fantasyblog4j.service.UserService;
 import cn.evilcoder.fantasyblog4j.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * User: Huangshanqi
@@ -20,15 +24,28 @@ import javax.servlet.http.HttpSession;
  * Time: 11:05
  */
 @Controller
-@RequestMapping(value = "/")
 public class UserCommonController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostService postService;
 
-    @RequestMapping(value = "home",method = RequestMethod.GET)
-    public String homePage(){
-        return "/home";
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String homePage(HttpServletRequest request){
+        QueryModel queryModel = new QueryModel();
+        queryModel.setUid(0L);
+        queryModel.setCategory(null);
+        queryModel.setTag(null);
+        queryModel.setKeyword(null);
+        queryModel.setPage(1);
+        ArrayList<PostItemModel> list = postService.search(queryModel);
+        request.setAttribute("posts",list);
+        queryModel.setCategory("0");
+        queryModel.setTag("0");
+        queryModel.setKeyword("");
+        request.setAttribute("query",queryModel);
+        return "post/listPost";
     }
 
     @RequestMapping(value = "login",method = RequestMethod.GET)

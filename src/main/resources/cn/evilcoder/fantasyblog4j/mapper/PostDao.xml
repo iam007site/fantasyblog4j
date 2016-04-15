@@ -71,10 +71,10 @@
             P.title AS post_title,
             D.content AS post_content,
             P.category AS post_category,
-            P.visit_time AS post_visit_time,
+            P.visit_time  AS post_visit_time,
             P.ctime AS post_ctime,
-            u.id AS post_uid,
-            u.username AS post_username,
+            U.id AS post_uid,
+            U.username AS post_username,
             PT.name AS post_tag
         FROM p_post P
             LEFT JOIN u_user U on P.uid = U.id

@@ -24,7 +24,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/home"><i class="fa fa-home"></i> Home</a>
+                <li><a href="/"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="active"><a href=""><i class="fa fa-book"></i> Posts</a>
                 </li>
