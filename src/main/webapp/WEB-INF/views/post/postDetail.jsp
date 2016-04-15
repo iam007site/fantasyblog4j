@@ -13,6 +13,7 @@
 <html>
 <head>
     <title><c:out value="${post.title}"/></title>
+    <meta name="description" content="${post.title}">
     <jsp:include page="../common/head.jsp"/>
 
     <!-- Add custom CSS here -->
@@ -58,11 +59,6 @@
                     <br>
                 </div>
                 <p><i>Do you like the post? </i> &nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-success" data-url="">Like</a></p>
-
-
-
-                <div class="g-plusone" data-annotation="inline" data-width="300" data-href=""></div>
-                <br/>
                 <hr>
 
                 <!-- the comment box -->
@@ -118,37 +114,13 @@
                     </div>
                 </div>
                 <!-- /well -->
-                <%--<div class="well">
-                    <h4><i class="fa fa-thumbs-o-up"></i> Follow me!</h4>
-                    <ul>
-                        <p><a title="Facebook" href=""><span class="fa-stack fa-lg"><i
-                                class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x"></i></span></a>
-                            <a title="Twitter" href=""><span class="fa-stack fa-lg"><i
-                                    class="fa fa-square-o fa-stack-2x"></i><i
-                                    class="fa fa-twitter fa-stack-1x"></i></span></a>
-                            <a title="Google+" href=""><span class="fa-stack fa-lg"><i
-                                    class="fa fa-square-o fa-stack-2x"></i><i
-                                    class="fa fa-google-plus fa-stack-1x"></i></span></a> <a title="Linkedin"
-                                                                                             href=""><span
-                                    class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i
-                                    class="fa fa-linkedin fa-stack-1x"></i></span></a> <a title="GitHub" href="https://github.com/huangshanqi"><span
-                                    class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i
-                                    class="fa fa-github fa-stack-1x"></i></span></a> <a title="Bitbucket" href=""><span
-                                    class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i
-                                    class="fa fa-bitbucket fa-stack-1x"></i></span></a></p>
-                    </ul>
-                </div>--%>
-                <!-- /well -->
                 <!-- /well -->
                 <div class="well">
                 <h4><i class="fa fa-fire"></i> Popular Posts:</h4>
                 <ul>
-                    <li><a href="">WPF vs. Windows Forms-Which is better?</a></li>
-                    <li><a href="">How to create responsive website with Bootstrap?</a></li>
-                    <li><a href="">The best Joomla! templates 2014</a></li>
-                    <li><a href="">ASP .NET cms list</a></li>
-                    <li><a href="">C# Hello, World! program</a></li>
-                    <li><a href="">Java random generator</a></li>
+                    <c:forEach items="${popPosts}" var="popPost" >
+                        <li ><a href="/post/detail/${popPost.id}" class="limit-length"><c:out value="${popPost.title}"/></a></li>
+                    </c:forEach>
                 </ul>
             </div>
                 <!-- /well -->
@@ -157,24 +129,29 @@
                 <div class="well">
                     <h4><i class="fa fa-fire"></i> New Posts:</h4>
                     <ul>
-                        <li><a href="">WPF vs. Windows Forms-Which is better?</a></li>
-                        <li><a href="">How to create responsive website with Bootstrap?</a></li>
-                        <li><a href="">The best Joomla! templates 2014</a></li>
-                        <li><a href="">ASP .NET cms list</a></li>
-                        <li><a href="">C# Hello, World! program</a></li>
-                        <li><a href="">Java random generator</a></li>
+                        <c:forEach items="${newPosts}" var="newPost" >
+                            <li ><a href="/post/detail/${newPost.id}" class="limit-length"><c:out value="${newPost.title}"/></a></li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <!-- /well -->
-
-
             </div>
         </div>
-
-        <hr>
     </div>
 </div>
 <!-- /.container -->
-<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
+<jsp:include page="../common/footer.jsp"></jsp:include>
+<script>
+    $(document).ready(function(){
+        $(".limit-length").each(function () {
+            if ($(this).text().length > 17) {
+                $(this).text($(this).text().substring(0, 17));
+                $(this).html($(this).html() + '...');
+            }
+        });
+    }
+    );
+
+</script>
 </html>

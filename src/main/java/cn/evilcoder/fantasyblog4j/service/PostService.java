@@ -1,6 +1,9 @@
 package cn.evilcoder.fantasyblog4j.service;
 
 import cn.evilcoder.fantasyblog4j.domain.*;
+import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
+import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
+import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
 
 import java.util.ArrayList;
 
@@ -11,9 +14,16 @@ import java.util.ArrayList;
  */
 public interface PostService {
 
-  public boolean insertPost(Post post,String tagStr,String content);
-  public PostDetailModel selectDetail(long pid);
-  public ArrayList<KeyValue> getUserTags(long uid);
-  public int addPostViewTime(long pid);
-  public ArrayList<PostItemModel> search(QueryModel queryModel);
+    public boolean insertPost(Post post, String tagStr, String content);
+
+    public PostDetailModel selectDetail(long pid);
+
+    public ArrayList<KeyValue> getUserTags(long uid);
+
+    public int addPostViewTime(long pid);
+
+    public ArrayList<PostItemModel> search(QueryModel queryModel);
+
+    public ArrayList<Post> getPopPosts();
+    public ArrayList<Post> getNewPosts();
 }

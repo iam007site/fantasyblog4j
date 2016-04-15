@@ -1,9 +1,10 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
 import cn.evilcoder.fantasyblog4j.domain.KeyValue;
-import cn.evilcoder.fantasyblog4j.domain.PostDetailModel;
-import cn.evilcoder.fantasyblog4j.domain.PostItemModel;
-import cn.evilcoder.fantasyblog4j.domain.QueryModel;
+import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
+import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
+import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
+import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,11 @@ public class PostController {
             ArrayList<KeyValue> popTags = postService.getUserTags(model.getUid());
             request.setAttribute("popTags", popTags);
         }
+
+        ArrayList<Post> popPosts = postService.getPopPosts();
+        ArrayList<Post> newPosts = postService.getNewPosts();
+        request.setAttribute("popPosts",popPosts);
+        request.setAttribute("newPosts",newPosts);
         return "post/postDetail";
     }
 

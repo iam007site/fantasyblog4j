@@ -1,4 +1,4 @@
-package cn.evilcoder.fantasyblog4j.domain;
+package cn.evilcoder.fantasyblog4j.domain.Model;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -120,4 +120,15 @@
             </where>
         ORDER BY post_ctime DESC limit #{offset},#{pageSize}
     </select>
+
+    <select id="getPopPosts" resultMap="PostMap" useCache="true" >
+        SELECT * FROM p_post
+        ORDER BY visit_time DESC
+        limit 10
+    </select>
+    <select id="getNewPosts" resultMap="PostMap" useCache="true" >
+        SELECT * FROM p_post
+        ORDER BY ctime DESC
+        limit 10
+    </select>
 </mapper>
