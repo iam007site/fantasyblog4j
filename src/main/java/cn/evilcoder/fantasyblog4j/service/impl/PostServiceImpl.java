@@ -75,6 +75,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public ArrayList<KeyValue> getUserCats(long uid) {
+        return postDao.getUserCats(uid);
+    }
+
+    @Override
     public int addPostViewTime(long pid) {
         return postDao.addPostViewTime(pid);
     }

@@ -2,6 +2,7 @@ package cn.evilcoder.fantasyblog4j.controller;
 
 import cn.evilcoder.fantasyblog4j.commons.LoginSession;
 import cn.evilcoder.fantasyblog4j.controller.forms.NewPostForm;
+import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.domain.User;
 import cn.evilcoder.fantasyblog4j.service.PostService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -60,7 +62,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "post",method = RequestMethod.GET)
-    public String addPostPage(){
+    public String addPostPage(HttpServletRequest request){
+
+        logger.info("==================================="+request.getSession().getAttribute(LoginSession.UID_KEY).toString());
+        ArrayList<KeyValue> popTags = postService.getUserTags((long)request.getSession().getAttribute(LoginSession.UID_KEY));
+        request.setAttribute("popTags", popTags);
+        ArrayList<KeyValue> popCats = postService.getUserCats((long)request.getSession().getAttribute(LoginSession.UID_KEY));
+        request.setAttribute("popCats", popCats);
+
         return "post/addPost";
     }
 

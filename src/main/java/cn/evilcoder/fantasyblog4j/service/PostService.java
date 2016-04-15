@@ -19,6 +19,7 @@ public interface PostService {
     public PostDetailModel selectDetail(long pid);
 
     public ArrayList<KeyValue> getUserTags(long uid);
+    public ArrayList<KeyValue> getUserCats(long uid);
 
     public int addPostViewTime(long pid);
 

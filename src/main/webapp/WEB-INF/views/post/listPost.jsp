@@ -40,9 +40,9 @@
                                 <i class="icon-share"></i><a href="#">39 Shares</a> |
                                 <span class="glyphicon glyphicon-tags"></span>Category :
                                 <a href="/post/search/${query.uid}/${post.category}/0/1?kw=">
-                                <span class="label label-info" style="margin-left: 5px">
-                                    <c:out value="${post.category}"/>
-                                </span
+                                    <span class="label label-info" style="margin-left: 5px">
+                                        <c:out value="${post.category}"/>
+                                    </span>
                                 </a>&nbsp;|
                                 <span class="glyphicon glyphicon-tags"></span>Tags :
                                     <c:forEach items="${post.tags}" var="tag">

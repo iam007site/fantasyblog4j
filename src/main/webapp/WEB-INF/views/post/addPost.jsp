@@ -94,36 +94,14 @@
             <div class="well">
                 <h4><i class="fa fa-tags"></i> 热门分类 :</h4>
                 <div class="row">
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
-                    <label class="col-md-4 category-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">Bootstrap</span>
-                    </label>
+                    <c:forEach items="${popCats}" var="popCat">
+                        <label class="col-md-4 category-select">
+                            <span style="margin: 4px" class="btn btn-success badge badge-info">
+                                <c:out value="${popCat.k}"/>
+                            </span>
+                        </label>
+                    </c:forEach>
+
                 </div>
             </div>
             <!-- /well -->
@@ -132,39 +110,13 @@
             <div class="well">
                 <h4><i class="fa fa-tags"></i> 热门标签:</h4>
                 <div class="row">
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
-                    <label class="col-md-4 tags-select">
-                        <span style="margin: 4px" class="btn btn-success badge badge-info">tags</span>
-                    </label>
+                    <c:forEach items="${popTags}" var="popTag">
+                        <label class="col-md-4 tags-select">
+                            <span style="margin: 4px" class="btn btn-success badge badge-info">
+                                <c:out value="${popTag.k}"/>
+                            </span>
+                        </label>
+                    </c:forEach>
                 </div>
             </div>
             <!-- /well -->

@@ -27,4 +27,6 @@ public interface PostDao {
     public ArrayList<Post> getPopPosts();
 
     public ArrayList<Post> getNewPosts();
+
+    public ArrayList<KeyValue> getUserCats(@Param("uid") long uid);
 }

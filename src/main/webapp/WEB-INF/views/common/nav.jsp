@@ -28,6 +28,10 @@
                 </li>
                 <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> Posts</a>
                 </li>
+                <c:if test="${requestScope.}">
+                    <li ><a href="/u/post"><i class="fa fa-book"></i> Add post</a>
+                    </li>
+                </c:if>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> Contact</a>
                 </li>
                 <li><a href="/util/about"><i class="fa fa-user"></i> About</a>
