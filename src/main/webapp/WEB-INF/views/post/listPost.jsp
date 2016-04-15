@@ -14,7 +14,7 @@
 <html>
 <head>
     <jsp:include page="../common/head.jsp"/>
-    <title>Title</title>
+    <title>evilcoder</title>
     <link type="text/css" rel="stylesheet" href="/resources/post/css/listPost.css">
 </head>
 <body>
