@@ -59,7 +59,7 @@ public class PostController {
         queryModel.setUid(uid);
         queryModel.setCategory(category.equals("0")?null:category);
         queryModel.setTag(tag.equals("0")?null:tag);
-        queryModel.setKeyword(!StringUtils.isEmpty(keyword)?null:keyword);
+        queryModel.setKeyword(StringUtils.isEmpty(keyword)?null:keyword);
         queryModel.setPage(page);
         ArrayList<PostItemModel> list = postService.search(queryModel);
         request.setAttribute("posts",list);

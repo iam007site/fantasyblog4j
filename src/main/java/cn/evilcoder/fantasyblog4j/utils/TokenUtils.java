@@ -8,7 +8,7 @@ import cn.evilcoder.fantasyblog4j.utils.encrypt.Encodes;
  */
 public class TokenUtils {
     public static final String TOKEN_SALT = "test_token";
-    public static final long TOKEN_EXPIRED_TIME_MS = 12*60*60*1000;
+    public static final long TOKEN_EXPIRED_TIME_MS = 24*60*60*1000;
 
     public static String genToken(String username,long uid){
         StringBuilder sb = new StringBuilder("");

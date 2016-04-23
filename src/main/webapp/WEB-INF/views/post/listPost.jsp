@@ -36,15 +36,15 @@
                             <div class="col-md-12 post-header-line">
                                 <span class="glyphicon glyphicon-user"></span>by <a href="/post/search/${post.uid}/0/0/1?kw="><c:out value="${post.username}"/></a> |
                                 <span class="glyphicon glyphicon-calendar"> </span><fmt:formatDate value="${post.ctime}" type="date" /> |
-                                <span class="glyphicon glyphicon-comment"></span><a href="#"> 3 Comments</a> |
-                                <i class="icon-share"></i><a href="#">39 Shares</a> |
-                                <span class="glyphicon glyphicon-tags"></span>Category :
+                                <span class="glyphicon glyphicon-comment"></span><a href="#"> 0 评论</a> |
+                                <i class="icon-share"></i><a href="#"><c:out value="${post.visitTime}"/> 浏览</a> |
+                                <span class="glyphicon glyphicon-tags"></span>分类 :
                                 <a href="/post/search/${query.uid}/${post.category}/0/1?kw=">
                                     <span class="label label-info" style="margin-left: 5px">
                                         <c:out value="${post.category}"/>
                                     </span>
                                 </a>&nbsp;|
-                                <span class="glyphicon glyphicon-tags"></span>Tags :
+                                <span class="glyphicon glyphicon-tags"></span>标签 :
                                     <c:forEach items="${post.tags}" var="tag">
                                         <a href="/post/search/${query.uid}/0/${tag}/1?kw=">
                                             <span class="label label-info" style="margin-left: 5px">
@@ -63,18 +63,18 @@
                     <ul class="pager">
                        <c:choose>
                            <c:when test="${query.page>1}">
-                               <li class="previous"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page-1}?kw="><span aria-hidden="true">&larr;</span> Older</a></li>
+                               <li class="previous"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page-1}?kw="><span aria-hidden="true">&larr;</span> 上一页</a></li>
                            </c:when>
                            <c:otherwise>
-                               <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+                               <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
                            </c:otherwise>
                        </c:choose>
                         <c:choose>
                             <c:when test="${fn:length(list) }=${query.pageSize}">
-                                <li class="next"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page+1}?kw=">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                                <li class="next"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page+1}?kw=">下一页 <span aria-hidden="true">&rarr;</span></a></li>
                             </c:when>
                             <c:otherwise>
-                                <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                                <li class="next disabled"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
                             </c:otherwise>
                         </c:choose>
 

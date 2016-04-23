@@ -34,15 +34,15 @@
                     <div class="col-md-12 post-header-line">
                         <span class="glyphicon glyphicon-user"></span>by <a href="/post/search/${post.uid}/0/0/1?kw="><c:out value="${post.username}"/></a> |
                         <span class="glyphicon glyphicon-calendar"></span><fmt:formatDate value="${post.ctime}" type="date"/>|
-                        <span class="glyphicon glyphicon-comment"></span><a href="#">3 Comments</a> |
-                        <i class="icon-share"></i><a href="#">39 Shares</a> |
-                        <span class="glyphicon glyphicon-tags"></span>Category :
+                        <span class="glyphicon glyphicon-comment"></span><a href="#">0 评论</a> |
+                        <i class="icon-share"></i><a href="#"><c:out value="${post.visitTime}"/> 浏览</a> |
+                        <span class="glyphicon glyphicon-tags"></span>分类 :
                         <a href="/post/search/${post.uid}/${post.category}/0/1?kw=">
                                 <span class="label label-info" style="margin-left: 5px">
                                     <c:out value="${post.category}"/>
                             </span>
                         </a> &nbsp;|
-                        <span class="glyphicon glyphicon-tags"></span>Tags :
+                        <span class="glyphicon glyphicon-tags"></span>标签 :
                         <c:forEach items="${post.tags}" var="tag">
                             <a href="/post/search/${post.uid}/0/${tag}/1?kw=">
                                 <span class="label label-info" style="margin-left: 5px">
@@ -88,9 +88,9 @@
 
             <div class="col-md-3">
                 <div class="well">
-                    <h4><i class="fa fa-search"></i> Blog Search...</h4>
+                    <h4><i class="fa fa-search"></i> 站点搜索...</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="search-input">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <i class="fa fa-search"></i>
@@ -101,7 +101,7 @@
                 </div>
                 <!-- /well -->
                 <div class="well">
-                    <h4><i class="fa fa-tags"></i> Popular Tags:</h4>
+                    <h4><i class="fa fa-tags"></i> 热门标签:</h4>
                     <div class="row">
                         <c:forEach items="${popTags}" var="map">
                             <a href="/post/search/${post.uid}/0/${map.k}/1?kw=">
@@ -116,7 +116,7 @@
                 <!-- /well -->
                 <!-- /well -->
                 <div class="well">
-                <h4><i class="fa fa-fire"></i> Popular Posts:</h4>
+                <h4><i class="fa fa-fire"></i> 热门文章:</h4>
                 <ul>
                     <c:forEach items="${popPosts}" var="popPost" >
                         <li ><a href="/post/detail/${popPost.id}" class="limit-length"><c:out value="${popPost.title}"/></a></li>
@@ -127,7 +127,7 @@
 
                 <!-- /well -->
                 <div class="well">
-                    <h4><i class="fa fa-fire"></i> New Posts:</h4>
+                    <h4><i class="fa fa-fire"></i> 最新文章:</h4>
                     <ul>
                         <c:forEach items="${newPosts}" var="newPost" >
                             <li ><a href="/post/detail/${newPost.id}" class="limit-length"><c:out value="${newPost.title}"/></a></li>
@@ -145,13 +145,23 @@
 <script>
     $(document).ready(function(){
         $(".limit-length").each(function () {
-            if ($(this).text().length > 17) {
-                $(this).text($(this).text().substring(0, 17));
+            if ($(this).text().length > 30) {
+                $(this).text($(this).text().substring(0, 30));
                 $(this).html($(this).html() + '...');
             }
         });
     }
     );
+
+    $(function(){
+        $('#search-input').bind('keypress',function(event){
+            var searchText = $("#search-input").val();
+            if(event.keyCode == "13" && searchText != "")
+            {
+                location.href = "/post/search/0/0/0/1?kw="+searchText;
+            }
+        });
+    });
 
 </script>
 </html>

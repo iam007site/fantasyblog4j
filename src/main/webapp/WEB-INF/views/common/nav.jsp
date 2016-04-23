@@ -24,17 +24,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/"><i class="fa fa-home"></i> Home</a>
+                <li><a href="/"><i class="fa fa-home"></i> 首页</a>
                 </li>
-                <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> Posts</a>
+                <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> 文章</a>
                 </li>
-                <li><a href="/util/contactus"><i class="fa fa-envelope"></i> Contact</a>
+                <li><a href="/util/contactus"><i class="fa fa-envelope"></i> 联系我</a>
                 </li>
-                <li><a href="/util/about"><i class="fa fa-user"></i> About</a>
+                <li><a href="/util/about"><i class="fa fa-user"></i> 关于</a>
                 </li>
 
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control col-lg-8" placeholder="Search...">
+                <form class="navbar-form navbar-right" method="get" action='/post/search/0/0/0/1'>
+                    <input id="kw" name="kw" type="text" class="form-control col-lg-8" placeholder="站点搜索..." />
                 </form>
 
             </ul>

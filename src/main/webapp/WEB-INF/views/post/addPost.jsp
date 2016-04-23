@@ -63,9 +63,6 @@
                             <div class="col-md-9">
                                 <input name="tags" id="tags" value=""/>
                             </div>
-                            <div class="col-md-2">
-                                <span class="text-center">或点击热门选择标签</span>
-                            </div>
                         </div>
 
                         <!-- 详情 -->
@@ -90,16 +87,15 @@
             </div>
         </div>
         <div class="col-md-3">
+
             <!-- /well -->
             <div class="well">
-                <h4><i class="fa fa-tags"></i> 热门分类 :</h4>
+                <h4><i class="fa fa-tags"></i>点击选择热门分类</h4>
                 <div class="row">
                     <c:forEach items="${popCats}" var="popCat">
-                        <label class="col-md-4 category-select">
-                            <span style="margin: 4px" class="btn btn-success badge badge-info">
-                                <c:out value="${popCat.k}"/>
-                            </span>
-                        </label>
+                        <span class="btn btn-info btn-sm category-select" style="margin-left: 5px ;margin-top:2px">
+                            <c:out value="${popCat.k}"/>
+                        </span>
                     </c:forEach>
 
                 </div>
@@ -108,19 +104,17 @@
 
             <!-- /well -->
             <div class="well">
-                <h4><i class="fa fa-tags"></i> 热门标签:</h4>
+                <h4><i class="fa fa-tags"></i>点击选择热门标签</h4>
                 <div class="row">
                     <c:forEach items="${popTags}" var="popTag">
-                        <label class="col-md-4 tags-select">
-                            <span style="margin: 4px" class="btn btn-success badge badge-info">
-                                <c:out value="${popTag.k}"/>
-                            </span>
-                        </label>
+                        <span class="btn btn-info btn-sm tags-select" style="margin-left: 5px ;margin-top:2px">
+                            <c:out value="${popTag.k}"/>
+                        </span>
                     </c:forEach>
+
                 </div>
             </div>
             <!-- /well -->
-
         </div>
     </div>
 </div>
