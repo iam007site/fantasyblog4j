@@ -65,7 +65,8 @@ public class UserCommonController {
         session.setAttribute(LoginSession.TOKEN_KEY,TokenUtils.genToken(user.getUsername(),user.getId()));
         session.setAttribute(LoginSession.USERNAME_KEY,user.getUsername());
         request.setAttribute("username",user.getUsername());
-        return "redirect:/post/search/"+user.getId()+"/0/0/1?kw=";
+//        return "redirect:/post/search/"+user.getId()+"/0/0/1?kw=";
+        return "redirect:/u/post";
     }
 
     @RequestMapping(value = "logout",method = RequestMethod.GET)
