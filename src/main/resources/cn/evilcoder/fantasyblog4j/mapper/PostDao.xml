@@ -118,6 +118,7 @@
                     AND (P.title LIKE CONCAT('%',#{keyword},'%') OR PT.name LIKE CONCAT('%',#{keyword},'%'))
                 </if>
             </where>
+        group by P.id
         ORDER BY post_ctime DESC limit #{offset},#{pageSize}
     </select>
 

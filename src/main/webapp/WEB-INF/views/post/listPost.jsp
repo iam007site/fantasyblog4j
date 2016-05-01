@@ -62,7 +62,7 @@
                 <nav>
                     <ul class="pager">
                        <c:choose>
-                           <c:when test="${query.page>1}">
+                           <c:when test="${query.page gt 1}">
                                <li class="previous"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page-1}?kw="><span aria-hidden="true">&larr;</span> 上一页</a></li>
                            </c:when>
                            <c:otherwise>
@@ -70,7 +70,7 @@
                            </c:otherwise>
                        </c:choose>
                         <c:choose>
-                            <c:when test="${fn:length(list) }=${query.pageSize}">
+                            <c:when test="${fn:length(posts) eq query.pageSize}">
                                 <li class="next"><a href="/post/search/${query.uid}/${query.category}/${query.tag}/${query.page+1}?kw=">下一页 <span aria-hidden="true">&rarr;</span></a></li>
                             </c:when>
                             <c:otherwise>

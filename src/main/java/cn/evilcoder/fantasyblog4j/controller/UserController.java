@@ -58,7 +58,7 @@ public class UserController {
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
     public String home(){
-        return "forward:/post/search/0/0/0/1?kw";
+        return "u/home";
     }
 
     @RequestMapping(value = "post",method = RequestMethod.GET)

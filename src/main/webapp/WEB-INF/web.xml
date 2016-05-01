@@ -89,6 +89,10 @@
 
     <!-- 错误页 -->
     <error-page>
+        <error-code>400</error-code>
+        <location>/error/401</location>
+    </error-page>
+    <error-page>
         <error-code>401</error-code>
         <location>/error/401</location>
     </error-page>

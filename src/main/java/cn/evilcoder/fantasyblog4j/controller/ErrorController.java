@@ -17,7 +17,7 @@ public class ErrorController {
         return "error/404";
     }
 
-    @RequestMapping(value = "401")
+    @RequestMapping(value = {"400","401"})
     public String error401(){
         return "error/401";
     }

@@ -7,6 +7,8 @@ import cn.evilcoder.fantasyblog4j.domain.User;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import cn.evilcoder.fantasyblog4j.service.UserService;
 import cn.evilcoder.fantasyblog4j.utils.TokenUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
  */
 @Controller
 public class UserCommonController {
+
+    private final static Logger logger = LoggerFactory.getLogger(UserCommonController.class);
 
     @Autowired
     private UserService userService;
@@ -66,7 +70,7 @@ public class UserCommonController {
         session.setAttribute(LoginSession.USERNAME_KEY,user.getUsername());
         request.setAttribute("username",user.getUsername());
 //        return "redirect:/post/search/"+user.getId()+"/0/0/1?kw=";
-        return "redirect:/u/post";
+        return "redirect:/u/home";
     }
 
     @RequestMapping(value = "logout",method = RequestMethod.GET)
