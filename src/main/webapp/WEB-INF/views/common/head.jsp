@@ -13,3 +13,12 @@
 <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icon50x50.png" media="screen" />
 <!-- Bootstrap core CSS -->
 <link href="/resources/bootstrap3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3562d6ba35550c52fc8a78262efbb5d8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
