@@ -28,6 +28,10 @@
                 </li>
                 <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> 文章</a>
                 </li>
+                <li ><a href="/post/cats"><i class="fa fa-book"></i> 分类</a>
+                </li>
+                <li ><a href="/post/tags"><i class="fa fa-book"></i> 标签</a>
+                </li>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> 联系我</a>
                 </li>
                 <li><a href="/util/about"><i class="fa fa-user"></i> 关于</a>

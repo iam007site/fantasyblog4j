@@ -72,4 +72,14 @@ public class PostController {
         request.setAttribute("query",queryModel);
         return "post/listPost";
     }
+
+    @RequestMapping(value = "cats",method = RequestMethod.GET)
+    public String categoriesPage(){
+        return "post/postCats";
+    }
+
+    @RequestMapping(value = "tags",method = RequestMethod.GET)
+    public String tagsPage(){
+        return "post/postTags";
+    }
 }

@@ -28,7 +28,7 @@
 				<h2>
 					404 Page Not Found</h2>
 				<div class="error-details">
-					出错啦，你请求的页面不存在！
+					出错啦，你请求的页面不存在！博客文章迁移中，你可以去首页逛逛啊└(^o^)┘
 				</div>
 				<div class="error-actions">
 					<a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
