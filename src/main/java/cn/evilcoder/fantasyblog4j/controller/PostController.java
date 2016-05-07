@@ -70,17 +70,10 @@ public class PostController {
         queryModel.setTag(tag);
         queryModel.setKeyword(keyword);
         request.setAttribute("query",queryModel);
-
-        ArrayList<KeyValue> popCats = postService.getAllCats();
-        request.setAttribute("popCats", popCats);
-
-        ArrayList<KeyValue> popTags = postService.getAllTags();
-        request.setAttribute("popTags", popTags);
-
         return "post/listPost";
     }
 
-    @RequestMapping(value = "cats",method = RequestMethod.GET)
+    @RequestMapping(value = "cats/3d",method = RequestMethod.GET)
     public String categoriesPage(HttpServletRequest request){
         ArrayList<KeyValue> popCats = postService.getAllCats();
         request.setAttribute("popCats", popCats);
@@ -88,10 +81,34 @@ public class PostController {
         return "post/postCats";
     }
 
-    @RequestMapping(value = "tags",method = RequestMethod.GET)
+    @RequestMapping(value = "tags/3d",method = RequestMethod.GET)
     public String tagsPage(HttpServletRequest request){
         ArrayList<KeyValue> popTags = postService.getAllTags();
         request.setAttribute("popTags", popTags);
         return "post/postTags";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "pop/list",method = RequestMethod.GET)
+    public Object getPopPosts(){
+         return postService.getPopPosts();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "new/list",method = RequestMethod.GET)
+    public Object getNewPosts(){
+        return postService.getNewPosts();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "cats/list",method = RequestMethod.GET)
+    public Object getPostCats(){
+        return postService.getAllCats();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "tags/list",method = RequestMethod.GET)
+    public Object getPostTags(){
+        return postService.getAllTags();
     }
 }

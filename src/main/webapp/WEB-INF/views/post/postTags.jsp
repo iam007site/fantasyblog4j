@@ -28,6 +28,6 @@
 </div>
 
 </body>
-<jsp:include page="../common/footer.jsp"/>
 <script src="/resources/3dlable/js/3dlable.js"></script>
+<jsp:include page="../common/footer.jsp"/>
 </html>

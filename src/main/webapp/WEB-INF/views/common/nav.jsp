@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand pull-left" href="/">Fantasyblog4j</a>
+            <a class="navbar-brand pull-left" href="/">Evilcoder</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,10 +27,6 @@
                 <li><a href="/"><i class="fa fa-home"></i> 首页</a>
                 </li>
                 <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> 文章</a>
-                </li>
-                <li ><a href="/post/cats"><i class="fa fa-book"></i> 分类</a>
-                </li>
-                <li ><a href="/post/tags"><i class="fa fa-book"></i> 标签</a>
                 </li>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> 联系我</a>
                 </li>
