@@ -70,16 +70,28 @@ public class PostController {
         queryModel.setTag(tag);
         queryModel.setKeyword(keyword);
         request.setAttribute("query",queryModel);
+
+        ArrayList<KeyValue> popCats = postService.getAllCats();
+        request.setAttribute("popCats", popCats);
+
+        ArrayList<KeyValue> popTags = postService.getAllTags();
+        request.setAttribute("popTags", popTags);
+
         return "post/listPost";
     }
 
     @RequestMapping(value = "cats",method = RequestMethod.GET)
-    public String categoriesPage(){
+    public String categoriesPage(HttpServletRequest request){
+        ArrayList<KeyValue> popCats = postService.getAllCats();
+        request.setAttribute("popCats", popCats);
+        logger.info("==============="+popCats.size());
         return "post/postCats";
     }
 
     @RequestMapping(value = "tags",method = RequestMethod.GET)
-    public String tagsPage(){
+    public String tagsPage(HttpServletRequest request){
+        ArrayList<KeyValue> popTags = postService.getAllTags();
+        request.setAttribute("popTags", popTags);
         return "post/postTags";
     }
 }

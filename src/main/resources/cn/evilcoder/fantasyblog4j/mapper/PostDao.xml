@@ -140,4 +140,12 @@
         GROUP BY category
         ORDER BY v DESC
     </select>
+
+
+    <select id="getAllCats" resultMap="cn.evilcoder.fantasyblog4j.dao.PostTagDao.KVMap" useCache="true">
+        SELECT category as k,count(*) as v
+        FROM p_post
+        GROUP BY category
+        ORDER BY v DESC
+    </select>
 </mapper>

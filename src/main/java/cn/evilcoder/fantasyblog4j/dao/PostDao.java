@@ -29,4 +29,6 @@ public interface PostDao {
     public ArrayList<Post> getNewPosts();
 
     public ArrayList<KeyValue> getUserCats(@Param("uid") long uid);
+
+    public ArrayList<KeyValue> getAllCats();
 }

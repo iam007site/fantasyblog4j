@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>about</title>
+    <title>后台管理页</title>
     <jsp:include page="../common/head.jsp"/>
 </head>
 <body>

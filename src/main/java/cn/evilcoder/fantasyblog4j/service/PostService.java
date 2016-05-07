@@ -20,6 +20,8 @@ public interface PostService {
 
     public ArrayList<KeyValue> getUserTags(long uid);
     public ArrayList<KeyValue> getUserCats(long uid);
+    public ArrayList<KeyValue> getAllTags();
+    public ArrayList<KeyValue> getAllCats();
 
     public int addPostViewTime(long pid);
 

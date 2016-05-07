@@ -122,7 +122,7 @@
                         <li ><a href="/post/detail/${popPost.id}" class="limit-length"><c:out value="${popPost.title}"/></a></li>
                     </c:forEach>
                 </ul>
-            </div>
+                </div>
                 <!-- /well -->
 
                 <!-- /well -->

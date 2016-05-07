@@ -14,34 +14,16 @@
 <html>
 <head>
 	<jsp:include page="../common/head.jsp"/>
-	<title>博客分类3D标签云</title>
+	<title>博客分类3D云视图</title>
 	<link type="text/css" rel="stylesheet" href="/resources/3dlable/css/3dlable.css">
 </head>
 <body style="">
 <jsp:include page="../common/nav.jsp"></jsp:include>
 <div class="container">
 	<div id="div1">
-		<a href="http://www.miaov.com">JS课程</a>
-		<a href="http://www.miaov.com/course_outline_1.html.php" class="red">教程</a>
-		<a href="http://www.miaov.com">试听</a>
-		<a href="http://www.miaov.com">精品</a>
-		<a href="http://www.miaov.com" class="blue">妙味课堂</a>
-		<a href="http://blog.miaov.com/722.html">SEO</a>
-		<a href="http://www.miaov.com" class="red">特效</a>
-		<a href="http://www.miaov.com/course.html.php" class="yellow">JavaScript</a>
-		<a href="http://www.miaov.com/course_detail_1.html.php">miaov</a>
-		<a href="http://www.miaov.com/course_detail_2.html.php" class="red">CSS</a>
-		<a href="http://www.miaov.com/course_detail_3.html.php">求职</a>
-		<a href="http://www.miaov.com/course_detail_2.html.php" class="blue">面试题</a>
-		<a href="http://www.miaov.com/contact.html.php">继承</a>
-		<a href="http://www.miaov.com/" class="red">妙味课堂</a>
-		<a href="http://www.miaov.com/about.html.php" class="blue">OOP</a>
-		<a href="http://www.miaov.com/work.html.php">XHTML</a>
-		<a href="http://www.miaov.com/message.html.php" class="blue">setInterval</a>
-		<a href="http://blog.miaov.com/">W3C</a>
-		<a href="http://blog.miaov.com/716.html">石川</a>
-		<a href="http://www.miaov.com/" class="yellow">妙味课堂</a>
-		<a href="http://blog.miaov.com/676.html">blue</a>
+		<c:forEach items="${popCats}" var="cat" >
+			<a href="/post/search/0/${cat.k}/0/1?kw="><c:out value="${cat.k}"/></a>
+		</c:forEach>
 	</div>
 </div>
 

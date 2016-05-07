@@ -19,7 +19,7 @@
 </head>
 <body>
 <jsp:include page="../common/nav.jsp"></jsp:include>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-9">
             <div class="row">
@@ -82,10 +82,73 @@
                 </nav>
             </div>
         </div>
+
+        <div class="col-md-3">
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-tags"></i> 热门分类:</h4>
+                <div class="row">
+                    <c:forEach items="${popCats}" var="cat">
+                        <a href="/post/search/0/${cat.k}/0/1?kw=">
+                                <span class="btn btn-info btn-xs" style="margin-left: 5px ;margin-top:2px">
+                                    <c:out value="${cat.k}"/>(&nbsp;<c:out value="${cat.v}"/>&nbsp;)
+                                </span>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+            <!-- /well -->
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-tags"></i> 热门标签:</h4>
+                <div class="row">
+                    <c:forEach items="${popTags}" var="tag">
+                        <a href="/post/search/0/0/${tag.k}/1?kw=">
+                                <span class="btn btn-info btn-xs" style="margin-left: 5px ;margin-top:2px">
+                                    <c:out value="${tag.k}"/>(&nbsp;<c:out value="${tag.v}"/>&nbsp;)
+                                </span>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+            <!-- /well -->
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-fire"></i> 热门文章:</h4>
+                <ul>
+                    <c:forEach items="${popPosts}" var="popPost" >
+                        <li ><a href="/post/detail/${popPost.id}" class="limit-length"><c:out value="${popPost.title}"/></a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+            <!-- /well -->
+
+            <!-- /well -->
+            <div class="well">
+                <h4><i class="fa fa-fire"></i> 最新文章:</h4>
+                <ul>
+                    <c:forEach items="${newPosts}" var="newPost" >
+                        <li ><a href="/post/detail/${newPost.id}" class="limit-length"><c:out value="${newPost.title}"/></a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+            <!-- /well -->
+        </div>
     </div>
 </div>
 </div>
 </div>
 </body>
 <jsp:include page="../common/footer.jsp"/>
+<script>
+    $(document).ready(function(){
+                $(".limit-length").each(function () {
+                    if ($(this).text().length > 30) {
+                        $(this).text($(this).text().substring(0, 30));
+                        $(this).html($(this).html() + '...');
+                    }
+                });
+            }
+    );
+</script>
 </html>

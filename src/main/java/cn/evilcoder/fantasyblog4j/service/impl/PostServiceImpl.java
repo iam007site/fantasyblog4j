@@ -80,6 +80,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public ArrayList<KeyValue> getAllTags() {
+        return postTagDao.getAllTags() ;
+    }
+
+    @Override
+    public ArrayList<KeyValue> getAllCats() {
+        return postDao.getAllCats();
+    }
+
+    @Override
     public int addPostViewTime(long pid) {
         return postDao.addPostViewTime(pid);
     }
