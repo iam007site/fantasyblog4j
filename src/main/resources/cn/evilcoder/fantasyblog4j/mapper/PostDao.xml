@@ -92,32 +92,32 @@
 
     <select id="search" resultMap="PostItemModelMap" useCache="true" parameterType="queryModel">
         SELECT
-            P.id AS post_id,
-            P.title AS post_title,
-            P.category AS post_category,
-            P.visit_time AS post_visit_time,
-            P.ctime AS post_ctime,
-            U.id AS post_uid,
-            U.username AS post_username,
-            PT.name AS post_tag
+        P.id AS post_id,
+        P.title AS post_title,
+        P.category AS post_category,
+        P.visit_time AS post_visit_time,
+        P.ctime AS post_ctime,
+        U.id AS post_uid,
+        U.username AS post_username,
+        PT.name AS post_tag
         FROM p_post P
-            LEFT JOIN
-            u_user U on P.uid = U.id
-            LEFT JOIN p_post_tag PT ON PT.pid = P.id
-            <where>
-                <if test="uid > 0">
-                    P.uid = #{uid}
-                </if>
-                <if test="category != null">
-                    AND P.category = #{category}
-                </if>
-                <if test="tag != null">
-                    AND PT.name = #{tag}
-                </if>
-                <if test="keyword != null">
-                    AND (P.title LIKE CONCAT('%',#{keyword},'%') OR PT.name LIKE CONCAT('%',#{keyword},'%'))
-                </if>
-            </where>
+        LEFT JOIN
+        u_user U on P.uid = U.id
+        LEFT JOIN p_post_tag PT ON PT.pid = P.id
+        <where>
+            <if test="uid > 0">
+                P.uid = #{uid}
+            </if>
+            <if test="category != null">
+                AND P.category = #{category}
+            </if>
+            <if test="tag != null">
+                AND PT.name = #{tag}
+            </if>
+            <if test="keyword != null">
+                AND (P.title LIKE CONCAT('%',#{keyword},'%') OR PT.name LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+        </where>
         group by P.id
         ORDER BY post_ctime DESC limit #{offset},#{pageSize}
     </select>

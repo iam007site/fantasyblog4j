@@ -1,5 +1,7 @@
 package cn.evilcoder.fantasyblog4j.domain.Model;
 
+import cn.evilcoder.fantasyblog4j.domain.KeyValue;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class PostItemModel {
     private String category;
     private int visitTime;
     private Date ctime;
-    private ArrayList<String> tags;
+    private ArrayList<KeyValue> tags;
 
     public long getUid() {
         return uid;
@@ -74,11 +76,11 @@ public class PostItemModel {
         this.ctime = ctime;
     }
 
-    public ArrayList<String> getTags() {
+    public ArrayList<KeyValue> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(ArrayList<KeyValue> tags) {
         this.tags = tags;
     }
 }
