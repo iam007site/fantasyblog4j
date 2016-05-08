@@ -31,6 +31,9 @@ public class PostController {
     @RequestMapping(value = "detail/{pid}", method = RequestMethod.GET)
     public String postDetail(HttpServletRequest request, @PathVariable("pid") long pid) {
         PostDetailModel model = postService.selectDetail(pid);
+        if(model!=null){
+            postService.addPostViewTime(model.getPid());
+        }
         request.setAttribute("post", model);
         return "post/postDetail";
     }
