@@ -1,5 +1,5 @@
-﻿# Host: localhost  (Version: 5.5.27)
-# Date: 2016-04-12 21:55:46
+﻿# Host: 104.224.132.151  (Version: 5.1.73)
+# Date: 2016-05-08 15:30:24
 # Generator: MySQL-Front 5.3  (Build 4.198)
 
 /*!40101 SET NAMES utf8 */;
@@ -14,16 +14,12 @@ CREATE TABLE `p_post` (
   `uid` bigint(20) NOT NULL DEFAULT '0',
   `title` varchar(500) NOT NULL DEFAULT '',
   `category` varchar(50) NOT NULL DEFAULT '',
+  `tags` varchar(500) NOT NULL DEFAULT '' COMMENT '\\u0001分割的标签',
   `visit_time` int(11) NOT NULL DEFAULT '0',
   `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100008 DEFAULT CHARSET=utf8 COMMENT='post table';
-
-#
-# Data for table "p_post"
-#
-
+) ENGINE=InnoDB AUTO_INCREMENT=100043 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='post table';
 
 #
 # Structure for table "p_post_detail"
@@ -37,12 +33,7 @@ CREATE TABLE `p_post_detail` (
   `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100008 DEFAULT CHARSET=utf8;
-
-#
-# Data for table "p_post_detail"
-#
-
+) ENGINE=InnoDB AUTO_INCREMENT=100043 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 #
 # Structure for table "p_post_tag"
@@ -59,12 +50,7 @@ CREATE TABLE `p_post_tag` (
   `mtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_post_tag_index` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=100021 DEFAULT CHARSET=utf8 COMMENT='post tag table';
-
-#
-# Data for table "p_post_tag"
-#
-
+) ENGINE=InnoDB AUTO_INCREMENT=100127 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='post tag table';
 
 #
 # Structure for table "test"
@@ -76,13 +62,7 @@ CREATE TABLE `test` (
   `username` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100005 DEFAULT CHARSET=utf8 COMMENT='for test';
-
-#
-# Data for table "test"
-#
-
-INSERT INTO `test` VALUES (100000,'hsq','1312'),(100001,'hsq','1312'),(100002,'hsq','1312'),(100003,'hsq','1312'),(100004,'hsq','1312');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='for test';
 
 #
 # Structure for table "u_user"
@@ -103,9 +83,3 @@ CREATE TABLE `u_user` (
   `last_login_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100002 DEFAULT CHARSET=utf8 COMMENT='user table';
-
-#
-# Data for table "u_user"
-#
-
-INSERT INTO `u_user` VALUES (100001,'evilcoder','515a5e5ecc9012533810c50b8400f7066616fbf2','6ca1b4997efa157b','hsqmobile@gmail.com','evilcoder',1,'','2016-04-12 17:21:40','2016-04-12 17:21:40','2016-04-12 17:21:40');
