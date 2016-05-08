@@ -193,7 +193,7 @@
             success:function (items) {
                 $.each(items,function(i, item) {
                     var html = "";
-                    html += "<a href='" + "post/search/0/0/" + item.k + "/1?kw='>" ;
+                    html += "<a href='" + "/post/search/0/0/" + item.k + "/1?kw='>" ;
                     html += "<span class='btn btn-info btn-xs' style='margin-left: 5px ;margin-top:2px'>";
                     html += item.k + "( " + item.v + " )";
                     html += "</span>";
@@ -217,7 +217,7 @@
             success:function (items) {
                 $.each(items,function(i, item) {
                     var html = "";
-                    html += "<a href='" + "post/search/0/0/" + item.k + "/1?kw='>" ;
+                    html += "<a href='" + "/post/search/0/0/" + item.k + "/1?kw='>" ;
                     html += "<span class='btn btn-info btn-xs' style='margin-left: 5px ;margin-top:2px'>";
                     html += item.k + "( " + item.v + " )";
                     html += "</span>";

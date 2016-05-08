@@ -15,6 +15,7 @@ public class PostDetailModel {
   private String title;
   private String content;
   private String category;
+  private String tagsStr;
   private int visitTime;
   private Date ctime;
   private ArrayList<String> tags;
@@ -66,6 +67,14 @@ public class PostDetailModel {
 
   public void setCategory(String category) {
     this.category = category;
+  }
+
+  public String getTagsStr() {
+    return tagsStr;
+  }
+
+  public void setTagsStr(String tagsStr) {
+    this.tagsStr = tagsStr;
   }
 
   public int getVisitTime() {

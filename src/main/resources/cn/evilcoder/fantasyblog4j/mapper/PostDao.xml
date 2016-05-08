@@ -18,6 +18,7 @@
         <result column="uid" property="uid"/>
         <result column="title" property="title"/>
         <result column="category" property="category"/>
+        <result column="tags" property="tags"/>
         <result column="visit_time" property="visitTime"/>
         <result column="ctime" property="ctime"/>
         <result column="mtime" property="mtime"/>
@@ -36,11 +37,9 @@
         <result column="post_title" property="title"/>
         <result column="post_content" property="content"/>
         <result column="post_category" property="category"/>
+        <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
         <result column="post_ctime" property="ctime"/>
-        <collection property="tags" ofType="string" javaType="ArrayList">
-            <result column="post_tag" property="tags"/>
-        </collection>
     </resultMap>
 
     <resultMap id="PostItemModelMap" type="postItemModel">
@@ -49,16 +48,14 @@
         <result column="post_id" property="pid"/>
         <result column="post_title" property="title"/>
         <result column="post_category" property="category"/>
+        <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
         <result column="post_ctime" property="ctime"/>
-        <collection property="tags" ofType="string" javaType="ArrayList">
-            <result column="post_tag" property="tags"/>
-        </collection>
     </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
-        p_post(uid,title,category,visit_time,ctime,mtime)
-        values(#{uid},#{title},#{category},#{visitTime},#{ctime},#{ctime})
+        p_post(uid,title,category,tags,visit_time,ctime,mtime)
+        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{ctime})
     </insert>
     <insert id="insertPostDetail" useGeneratedKeys="true" parameterType="postDetail" keyProperty="id">
         insert into
@@ -71,15 +68,14 @@
             P.title AS post_title,
             D.content AS post_content,
             P.category AS post_category,
+            P.tags AS post_tags,
             P.visit_time  AS post_visit_time,
             P.ctime AS post_ctime,
             U.id AS post_uid,
-            U.username AS post_username,
-            PT.name AS post_tag
+            U.username AS post_username
         FROM p_post P
             LEFT JOIN u_user U on P.uid = U.id
             LEFT JOIN p_post_detail D ON D.pid = P.id
-            LEFT JOIN p_post_tag PT ON PT.pid = P.id
         WHERE P.id = #{pid}
         limit 1
     </select>
@@ -95,15 +91,14 @@
         P.id AS post_id,
         P.title AS post_title,
         P.category AS post_category,
+        P.tags AS post_tags,
         P.visit_time AS post_visit_time,
         P.ctime AS post_ctime,
         U.id AS post_uid,
-        U.username AS post_username,
-        PT.name AS post_tag
+        U.username AS post_username
         FROM p_post P
         LEFT JOIN
         u_user U on P.uid = U.id
-        LEFT JOIN p_post_tag PT ON PT.pid = P.id
         <where>
             <if test="uid > 0">
                 P.uid = #{uid}
@@ -112,13 +107,12 @@
                 AND P.category = #{category}
             </if>
             <if test="tag != null">
-                AND PT.name = #{tag}
+                AND P.tags LIKE CONCAT('%',#{tag},'%')
             </if>
             <if test="keyword != null">
-                AND (P.title LIKE CONCAT('%',#{keyword},'%') OR PT.name LIKE CONCAT('%',#{keyword},'%'))
+                AND (P.title LIKE CONCAT('%',#{keyword},'%') OR P.tags LIKE CONCAT('%',#{keyword},'%') OR P.category LIKE CONCAT('%',#{keyword},'%'))
             </if>
         </where>
-        group by P.id
         ORDER BY post_ctime DESC limit #{offset},#{pageSize}
     </select>
 
@@ -148,4 +142,15 @@
         GROUP BY category
         ORDER BY v DESC
     </select>
+
+    <update id="batchUpdatePostTag" parameterType="java.util.ArrayList" >
+        <foreach collection="list" item="post" index="index" separator=";" open="" close="">
+            UPDATE p_post
+            <set>
+                tags = #{post.tags}
+            </set>
+            WHERE id = #{post.id}
+        </foreach>
+
+    </update>
 </mapper>

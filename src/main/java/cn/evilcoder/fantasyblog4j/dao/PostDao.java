@@ -31,4 +31,6 @@ public interface PostDao {
     public ArrayList<KeyValue> getUserCats(@Param("uid") long uid);
 
     public ArrayList<KeyValue> getAllCats();
+
+    public int batchUpdatePostTag(ArrayList<Post> list);
 }

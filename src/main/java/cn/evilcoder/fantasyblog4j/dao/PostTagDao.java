@@ -18,5 +18,5 @@ public interface PostTagDao {
   public ArrayList<PostTag> selectPostTags(@Param("pid") long pid);
   public ArrayList<KeyValue> selectUserPopularTags(@Param("uid") long uid);
   public ArrayList<KeyValue> getAllTags();
-
+  public ArrayList<PostTag> getAll();
 }

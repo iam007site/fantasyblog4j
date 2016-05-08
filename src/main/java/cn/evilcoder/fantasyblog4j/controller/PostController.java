@@ -4,13 +4,9 @@ import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
-import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.service.PostService;
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -36,16 +32,6 @@ public class PostController {
     public String postDetail(HttpServletRequest request, @PathVariable("pid") long pid) {
         PostDetailModel model = postService.selectDetail(pid);
         request.setAttribute("post", model);
-        if (model != null && model.getUid() > 0) {
-            postService.addPostViewTime(model.getPid());
-            ArrayList<KeyValue> popTags = postService.getUserTags(model.getUid());
-            request.setAttribute("popTags", popTags);
-        }
-
-        ArrayList<Post> popPosts = postService.getPopPosts();
-        ArrayList<Post> newPosts = postService.getNewPosts();
-        request.setAttribute("popPosts",popPosts);
-        request.setAttribute("newPosts",newPosts);
         return "post/postDetail";
     }
 
@@ -111,4 +97,11 @@ public class PostController {
     public Object getPostTags(){
         return postService.getAllTags();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "update",method = RequestMethod.GET)
+    public Object batchUpdatePostTags(){
+        return postService.batchUpdatePostTags();
+    }
+
 }

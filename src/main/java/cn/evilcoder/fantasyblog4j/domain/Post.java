@@ -10,6 +10,7 @@ public class Post extends BaseDomain{
   private long uid;
   private String title;
   private String category;
+  private String tags;
   private int visitTime;
 
 
@@ -35,6 +36,14 @@ public class Post extends BaseDomain{
 
   public void setCategory(String category) {
     this.category = category;
+  }
+
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
   }
 
   public int getVisitTime() {

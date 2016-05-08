@@ -1,5 +1,6 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
+import cn.evilcoder.fantasyblog4j.commons.Common;
 import cn.evilcoder.fantasyblog4j.commons.LoginSession;
 import cn.evilcoder.fantasyblog4j.controller.forms.NewPostForm;
 import cn.evilcoder.fantasyblog4j.domain.KeyValue;
@@ -83,6 +84,7 @@ public class UserController {
         post.setVisitTime(0);
         post.setCtime(new Date());
         post.setMtime(post.getCtime());
+        post.setTags(form.getTags().replaceAll(",", Common.TAG_SPLITOR));
         postService.insertPost(post,form.getTags(),form.getContent());
         if(post.getId()>0){
             return "redirect:/post/detail/"+post.getId();
