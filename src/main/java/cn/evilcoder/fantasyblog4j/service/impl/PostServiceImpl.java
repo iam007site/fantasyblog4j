@@ -131,7 +131,8 @@ public class PostServiceImpl implements PostService {
 
         HashMap<Long,List<PostTag>> map = new HashMap<>();
         for(PostTag postTag:postTags){
-            List<PostTag> old = map.getOrDefault(postTag.getPid(),new ArrayList<PostTag>());
+
+            List<PostTag> old =map.containsKey(postTag.getPid())? map.get(postTag.getPid()):new ArrayList<PostTag>();
             old.add(postTag);
             map.put(postTag.getPid(),old);
         }
