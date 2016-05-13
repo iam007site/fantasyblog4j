@@ -29,4 +29,6 @@ public interface PostService {
 
     public ArrayList<Post> getPopPosts();
     public ArrayList<Post> getNewPosts();
+
+    public int batchUpdatePostTags();
 }

@@ -47,18 +47,21 @@
     <select id="selectPostTags" resultMap="PostTagMap" parameterType="long" useCache="true">
         select * FROM  p_post_tag WHERE pid = #{pid}
     </select>
-    <select id="selectUserPopularTags" resultType="keyValue" useCache="true" parameterType="long">
+    <select id="selectUserPopularTags" resultMap="KVMap " useCache="true" parameterType="long">
         SELECT name as k,count(pid) AS v
         FROM p_post_tag
         WHERE uid = #{uid}
         GROUP BY k
         ORDER BY v DESC ;
     </select>
-    <select id="getAllTags" resultType="keyValue" useCache="true">
+    <select id="getAllTags" resultMap="KVMap" useCache="true">
         SELECT name as k,count(pid) AS v
         FROM p_post_tag
         GROUP BY k
         ORDER BY v DESC ;
     </select>
 
+    <select id="getAll" resultMap="PostTagMap">
+        SELECT * FROM p_post_tag
+    </select>
 </mapper>

@@ -1,17 +1,23 @@
 package cn.evilcoder.fantasyblog4j.service.impl;
 
+import cn.evilcoder.fantasyblog4j.commons.Common;
 import cn.evilcoder.fantasyblog4j.dao.PostDao;
 import cn.evilcoder.fantasyblog4j.dao.PostTagDao;
-import cn.evilcoder.fantasyblog4j.domain.*;
+import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
+import cn.evilcoder.fantasyblog4j.domain.Post;
+import cn.evilcoder.fantasyblog4j.domain.PostDetail;
+import cn.evilcoder.fantasyblog4j.domain.PostTag;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * User: evilcoder
@@ -58,11 +64,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDetailModel selectDetail(long pid) {
         PostDetailModel detailModel = postDao.selectPostDetail(pid);
+
         if (detailModel != null) {
-            ArrayList<PostTag> postTags = postTagDao.selectPostTags(pid);
             ArrayList<String> tags = new ArrayList<String>();
-            for (PostTag postTag : postTags) {
-                tags.add(postTag.getName());
+            for (String name : detailModel.getTagsStr().split(Common.TAG_SPLITOR)) {
+                tags.add(name);
             }
             detailModel.setTags(tags);
         }
@@ -96,7 +102,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public ArrayList<PostItemModel> search(QueryModel queryModel) {
-        return postDao.search(queryModel);
+        ArrayList<PostItemModel> result = postDao.search(queryModel);
+        for (PostItemModel itemModel : result) {
+            ArrayList<String> tags = new ArrayList<String>();
+            for (String name : itemModel.getTagsStr().split(Common.TAG_SPLITOR)) {
+                tags.add(name);
+            }
+            itemModel.setTags(tags);
+        }
+        return result;
     }
 
     @Override
@@ -107,5 +121,38 @@ public class PostServiceImpl implements PostService {
     @Override
     public ArrayList<Post> getNewPosts() {
         return postDao.getNewPosts();
+    }
+
+    @Override
+    public int batchUpdatePostTags() {
+
+        ArrayList<PostTag> postTags = postTagDao.getAll();
+        ArrayList<Post> posts = new ArrayList<>();
+
+        HashMap<Long,List<PostTag>> map = new HashMap<>();
+        for(PostTag postTag:postTags){
+            List<PostTag> old = map.getOrDefault(postTag.getPid(),new ArrayList<PostTag>());
+            old.add(postTag);
+            map.put(postTag.getPid(),old);
+        }
+
+        for(Long pid:map.keySet()){
+            Post post = new Post();
+            post.setTags("");
+            post.setId(pid);
+            List<PostTag> list = map.get(pid);
+            StringBuffer sb = new StringBuffer("");
+            for(int i=0;i<list.size();i++){
+                if(i!=list.size()-1){
+                    sb.append(list.get(i).getName()).append(Common.TAG_SPLITOR);
+                }else{
+                    sb.append(list.get(i).getName());
+                }
+            }
+            post.setTags(sb.toString());
+            posts.add(post);
+        }
+
+        return postDao.batchUpdatePostTag(posts);
     }
 }

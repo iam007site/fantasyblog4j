@@ -101,37 +101,23 @@
                 </div>
                 <!-- /well -->
                 <div class="well">
-                    <h4><i class="fa fa-tags"></i> 热门标签:</h4>
-                    <div class="row">
-                        <c:forEach items="${popTags}" var="map">
-                            <a href="/post/search/${post.uid}/0/${map.k}/1?kw=">
-                                <span class="btn btn-info btn-sm" style="margin-left: 5px ;margin-top:2px">
-                                    <c:out value="${map.k}"/>(&nbsp;<c:out value="${map.v}"/>&nbsp;)
-                                </span>
-                            </a>
-                        </c:forEach>
-
+                    <h4><i class="fa fa-tags"></i> 热门标签:<a href="/post/tags/3d" style="font-size: 10px;" target="_blank">&nbsp;&nbsp;3D标签云</a></h4>
+                    <div class="row" id="post-tags-div">
                     </div>
                 </div>
                 <!-- /well -->
                 <!-- /well -->
                 <div class="well">
-                <h4><i class="fa fa-fire"></i> 热门文章:</h4>
-                <ul>
-                    <c:forEach items="${popPosts}" var="popPost" >
-                        <li ><a href="/post/detail/${popPost.id}" class="limit-length"><c:out value="${popPost.title}"/></a></li>
-                    </c:forEach>
-                </ul>
+                    <h4><i class="fa fa-fire"></i> 热门文章:</h4>
+                    <ul id="pop-post-ul">
+                    </ul>
                 </div>
                 <!-- /well -->
 
                 <!-- /well -->
                 <div class="well">
                     <h4><i class="fa fa-fire"></i> 最新文章:</h4>
-                    <ul>
-                        <c:forEach items="${newPosts}" var="newPost" >
-                            <li ><a href="/post/detail/${newPost.id}" class="limit-length"><c:out value="${newPost.title}"/></a></li>
-                        </c:forEach>
+                    <ul id="new-post-ul">
                     </ul>
                 </div>
                 <!-- /well -->
@@ -143,15 +129,95 @@
 </body>
 <jsp:include page="../common/footer.jsp"></jsp:include>
 <script>
-    $(document).ready(function(){
-        $(".limit-length").each(function () {
-            if ($(this).text().length > 30) {
-                $(this).text($(this).text().substring(0, 30));
-                $(this).html($(this).html() + '...');
+
+    function getPopPosts() {
+        $.ajax({
+            url:"/post/pop/list",
+            type:"get",
+            dataType:"json",
+            success:function (popPost) {
+                $.each(popPost,function(i, post) {
+                    var liHtml = "";
+                    liHtml += "<li >";
+                    liHtml += "<a href='" + "/post/detail/" + post.id + "'" ;
+                    liHtml += "class='limit-length'"+">";
+                    liHtml += "["+post.visitTime+"]" + post.title;
+                    liHtml += "</a>";
+                    liHtml += "</li>";
+                    $("#pop-post-ul").append(liHtml);
+                });
+                limitLength();
+            },
+            error:function (data) {
+                $("#pop-post-ul").append("");
+                var html = "好像出了点问题 〒_〒 ,点我刷新 ";
+                html += "<button class='btn btn-danger btn-xs'  onclick='getPopPosts()'>刷 新</button>"
+                $("#pop-post-ul").append(html);
             }
         });
     }
-    );
+
+
+    function getNewPosts() {
+        $.ajax({
+            url:"/post/new/list",
+            type:"get",
+            dataType:"json",
+            success:function (popPost) {
+                $.each(popPost,function(i, post) {
+                    var liHtml = "";
+                    liHtml += "<li >";
+                    liHtml += "<a href='" + "/post/detail/" + post.id + "'" ;
+                    liHtml += "class='limit-length'"+">";
+                    liHtml += "["+post.visitTime+"]" + post.title;
+                    liHtml += "</a>";
+                    liHtml += "</li>";
+                    $("#new-post-ul").append(liHtml);
+                });
+                limitLength();
+            },
+            error:function (data) {
+                $("#new-post-ul").append("");
+                var html = "好像出了点问题 〒_〒 ,点我刷新 ";
+                html += "<button class='btn btn-danger btn-xs'  onclick='getNewPosts()'>刷 新</button>"
+                $("#new-post-ul").append(html);
+            }
+        });
+    }
+    function limitLength() {
+        $(".limit-length").each(function () {
+                    if ($(this).text().length > 30) {
+                        $(this).text($(this).text().substring(0, 30));
+                        $(this).html($(this).html() + '...');
+                    }
+                }
+        );
+    }
+
+    function getPostTags() {
+        $.ajax({
+            url:"/post/tags/list",
+            type:"get",
+            dataType:"json",
+            success:function (items) {
+                $.each(items,function(i, item) {
+                    var html = "";
+                    html += "<a href='" + "/post/search/0/0/" + item.k + "/1?kw='>" ;
+                    html += "<span class='btn btn-info btn-xs' style='margin-left: 5px ;margin-top:2px'>";
+                    html += item.k + "( " + item.v + " )";
+                    html += "</span>";
+                    html += "</a>";
+                    $("#post-tags-div").append(html);
+                });
+            },
+            error:function (data) {
+                $("#post-tags-div").html("");
+                var html = "好像出了点问题 〒_〒 ,点我刷新 ";
+                html += "<button class='btn btn-danger btn-xs'  onclick='getPostTags()'>刷 新</button>"
+                $("#post-tags-div").append(html);
+            }
+        });
+    }
 
     $(function(){
         $('#search-input').bind('keypress',function(event){
@@ -162,6 +228,17 @@
             }
         });
     });
+
+
+    $(document).ready(
+            function(){
+                getPopPosts();
+                getNewPosts();
+                getPostTags()
+    }
+    );
+
+
 
 </script>
 </html>

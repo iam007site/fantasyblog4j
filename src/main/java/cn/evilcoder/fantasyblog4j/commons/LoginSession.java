@@ -10,8 +10,4 @@ public class LoginSession {
     public static final String TOKEN_KEY = "token";
     public static final String EXPIRED_TIME_KEY = "expired";
     public static final String USERNAME_KEY = "username";
-
-
-
-
 }
