@@ -120,12 +120,12 @@
 </div>
 </body>
 
-<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../common/footer.jsp"></jsp:include>
 <!-- include summernote css/js-->
-<script src="/resources/summernote0.8.1/summernote0.8.1.js"/>
+<script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
 
 <!-- tagsinput-->
-<script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"/>
+<script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
 <!-- tagsinput-->
 
 <!--bootstrap select-->
