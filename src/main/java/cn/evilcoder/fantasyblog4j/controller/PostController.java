@@ -4,6 +4,7 @@ import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
+import cn.evilcoder.fantasyblog4j.domain.PostComment;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * User: evilcoder
@@ -107,4 +109,22 @@ public class PostController {
         return postService.batchUpdatePostTags();
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/comment",method = RequestMethod.POST)
+    public Object addPostComment(@ModelAttribute PostComment comment){
+        comment.setCtime(new Date());
+        comment.setMtime(comment.getCtime());
+        long cid = postService.addPostComment(comment);
+        if(cid>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{pid}",method = RequestMethod.GET)
+    public Object getPostComment(@PathVariable("pid") long pid){
+        return postService.getPostComment(pid);
+    }
 }

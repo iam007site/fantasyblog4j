@@ -15,7 +15,7 @@
     <jsp:include page="../common/head.jsp"/>
 </head>
 <body>
-<jsp:include page="../common/nav.jsp"></jsp:include>
+<jsp:include page="../common/nav.jsp"/>
 
 <div class="container">
     <div class="row">

@@ -31,4 +31,8 @@ public interface PostService {
     public ArrayList<Post> getNewPosts();
 
     public int batchUpdatePostTags();
+
+
+    public long addPostComment(PostComment comment);
+    public ArrayList<PostComment> getPostComment(long pid);
 }

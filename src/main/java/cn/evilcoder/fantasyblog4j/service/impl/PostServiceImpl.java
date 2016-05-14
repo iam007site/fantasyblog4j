@@ -1,15 +1,13 @@
 package cn.evilcoder.fantasyblog4j.service.impl;
 
 import cn.evilcoder.fantasyblog4j.commons.Common;
+import cn.evilcoder.fantasyblog4j.dao.PostCommentDao;
 import cn.evilcoder.fantasyblog4j.dao.PostDao;
 import cn.evilcoder.fantasyblog4j.dao.PostTagDao;
-import cn.evilcoder.fantasyblog4j.domain.KeyValue;
+import cn.evilcoder.fantasyblog4j.domain.*;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
-import cn.evilcoder.fantasyblog4j.domain.Post;
-import cn.evilcoder.fantasyblog4j.domain.PostDetail;
-import cn.evilcoder.fantasyblog4j.domain.PostTag;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +29,8 @@ public class PostServiceImpl implements PostService {
     private PostDao postDao;
     @Autowired
     private PostTagDao postTagDao;
+    @Autowired
+    private PostCommentDao postCommentDao;
 
     @Override
     @Transactional
@@ -155,5 +155,16 @@ public class PostServiceImpl implements PostService {
         }
 
         return postDao.batchUpdatePostTag(posts);
+    }
+
+
+    @Override
+    public long addPostComment(PostComment comment) {
+        return postCommentDao.insert(comment);
+    }
+
+    @Override
+    public ArrayList<PostComment> getPostComment(long pid) {
+        return postCommentDao.getPostComment(pid);
     }
 }

@@ -19,6 +19,8 @@
     <!-- Add custom CSS here -->
     <link href="/resources/post/css/postDetail.css" rel="stylesheet">
     <link href="/resources/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- include summernote css/js-->
+    <link href="/resources/summernote0.8.1/summernote0.8.1.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../common/nav.jsp"/>
@@ -64,25 +66,53 @@
                 <!-- the comment box -->
                 <div class="well">
                     <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                    <form role="form" >
+                        <input type="text" id="pid" name="pid" value="${post.pid}" style="display: none"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="username" class="form-control" id="comment-name" placeholder="Enter name" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="email" name="email" class="form-control" id="comment-email" placeholder="Enter email" required="required" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Message</label>
+                                    <textarea name="content" id="summernote" class="form-control" required="required" placeholder="Message">
+
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="handleComment()" class="btn btn-primary"><i class="fa fa-reply"></i> 提交留言</button>
                     </form>
                 </div>
                 <hr>
 
                 <!-- the comments -->
-                <h3><i class="fa fa-comment"></i> User One says:
-                    <small> 9:41 PM on August 24, 2014</small>
-                </h3>
-                <p>Excellent post! Thank You the great article, it was useful!</p>
-
-                <h3><i class="fa fa-comment"></i> User Two says:
-                    <small> 9:47 PM on August 24, 2014</small>
-                </h3>
-                <p>Excellent post! Thank You the great article, it was useful!</p>
+                <!-- /well -->
+                <div class="well">
+                    <h4>
+                        <i class="fa fa-fire"></i> 最新评论:
+                        <button type="button" onclick="getComments()" class="btn btn-primary"> 查看留言</button>
+                    </h4>
+                    <ul id="comments">
+                    </ul>
+                </div>
+                <!-- /well -->
 
             </div>
 
@@ -123,13 +153,22 @@
                 <!-- /well -->
             </div>
         </div>
+
+
     </div>
 </div>
 <!-- /.container -->
 </body>
-<jsp:include page="../common/footer.jsp"></jsp:include>
+<jsp:include page="../common/footer.jsp"/>
+<!-- include summernote css/js-->
+<script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
 <script>
 
+    function initEditor(){
+        $('#summernote').summernote({
+            minHeight: 100
+        });
+    }
     function getPopPosts() {
         $.ajax({
             url:"/post/pop/list",
@@ -219,6 +258,31 @@
         });
     }
 
+    function getComments(){
+        $("#comments").html("");
+        $.ajax({
+            url:"/post/comment/${post.pid}",
+            type:"get",
+            dataType:"json",
+            success:function (items) {
+                $.each(items,function(i, item) {
+                    var html = "<div class=' well' >";
+                    html += "<h3>" + item.username;
+                    html += " 于<small> "+ formatTime(item.ctime)+" 留言："+"</small></h3>";
+                    html += "</br>" + item.content;
+                    html += "</div>";
+                    $("#comments").append(html);
+                });
+            },
+            error:function (data) {
+                $("#comments").html("");
+                var html = "好像出了点问题 〒_〒 ,点我刷新 ";
+                html += "<button class='btn btn-danger btn-xs'  onclick='getComments()'>刷 新</button>"
+                $("#comments").append(html);
+            }
+        });
+    }
+
     $(function(){
         $('#search-input').bind('keypress',function(event){
             var searchText = $("#search-input").val();
@@ -229,12 +293,52 @@
         });
     });
 
+    function formatTime(timestamp){
+        var d = new Date(timestamp);
+        return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+    }
+
+    function handleComment(){
+        if ($('#comment-name').val() == '' || $('#comment-email').val() == '' ||  $('#summernote').summernote('code') == '') {
+            alert("请完成表单");
+        } else {
+            var pid = $('#pid').val();
+            var username = $('#comment-name').val();
+            var email = $('#comment-email').val();
+            var content = $('#summernote').summernote('code');
+            var form = "";
+            $.ajax({
+                url:"/post/comment",
+                type:"post",
+                data:{
+                    username:$('#comment-name').val(),
+                    email:$('#comment-email').val(),
+                    pid:$('#pid').val(),
+                    content:$('#summernote').summernote('code')
+                },
+                success:function (items) {
+                    $('#comment-name').val("");
+                    $('#comment-email').val("");
+                    $('#summernote').summernote('code', "写下你的留言...");
+                    alert("留言提交成功，感谢你的留言，我会尽快回复！");
+                    $('#comments').html("");
+                    getComments();
+                },
+                error:function (data) {
+                    alert("无法提交留言，请稍后再试！");
+                }
+            });
+
+        }
+    }
+
 
     $(document).ready(
             function(){
+                initEditor();
                 getPopPosts();
                 getNewPosts();
-                getPostTags()
+                getPostTags();
     }
     );
 

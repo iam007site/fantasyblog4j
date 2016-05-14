@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../common/head.jsp"></jsp:include>
+    <jsp:include page="../common/head.jsp"/>
     <title>发博文</title>
 
     <!-- include summernote css/js-->
@@ -27,7 +27,7 @@
 
 </head>
 <body style="padding-top: 100px">
-<jsp:include page="../common/nav.jsp"></jsp:include>
+<jsp:include page="../common/nav.jsp"/>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-md-9">
@@ -122,10 +122,10 @@
 
 <jsp:include page="../common/footer.jsp"/>
 <!-- include summernote css/js-->
-<script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
+<script src="/resources/summernote0.8.1/summernote0.8.1.js"/>
 
 <!-- tagsinput-->
-<script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
+<script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"/>
 <!-- tagsinput-->
 
 <!--bootstrap select-->
@@ -164,14 +164,6 @@
             $('#postForm').submit();
         }
     }
-    /*    function setEditorContent(){
-     var tags = $('#tags').val();
-     alert("text"+tags);
-     var markupStr = $('#summernote').summernote('code');
-     alert(markupStr);
-     $('#editor').val(markupStr);
-     $('#postForm').submit();
-     }*/
 
 </script>
 </html>
