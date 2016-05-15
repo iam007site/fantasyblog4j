@@ -58,7 +58,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
-    public String home(){
+    public String home(HttpServletRequest request){
+        request.setAttribute(LoginSession.USERNAME_KEY,request.getSession().getAttribute(LoginSession.USERNAME_KEY));
+        request.setAttribute(LoginSession.UID_KEY,request.getSession().getAttribute(LoginSession.UID_KEY));
         return "u/home";
     }
 

@@ -1,10 +1,8 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
 import cn.evilcoder.fantasyblog4j.commons.LoginSession;
-import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.QueryModel;
-import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.domain.User;
 import cn.evilcoder.fantasyblog4j.service.PostService;
 import cn.evilcoder.fantasyblog4j.service.UserService;
@@ -71,6 +69,7 @@ public class UserCommonController {
         session.setAttribute(LoginSession.TOKEN_KEY,TokenUtils.genToken(user.getUsername(),user.getId()));
         session.setAttribute(LoginSession.USERNAME_KEY,user.getUsername());
         request.setAttribute("username",user.getUsername());
+        request.setAttribute("uid",user.getId());
 //        return "redirect:/post/search/"+user.getId()+"/0/0/1?kw=";
         return "redirect:/u/home";
     }

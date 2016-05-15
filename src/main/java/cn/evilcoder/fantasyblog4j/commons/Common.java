@@ -7,4 +7,9 @@ package cn.evilcoder.fantasyblog4j.commons;
  */
 public class Common {
   public static final String TAG_SPLITOR = "\u0001";
+
+  public static class NoteState{
+     public static final int PUBLIC = 0;
+     public static final int PRIVATE = 1;
+  }
 }

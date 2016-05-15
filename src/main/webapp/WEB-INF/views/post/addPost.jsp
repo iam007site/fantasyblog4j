@@ -121,6 +121,11 @@
 </body>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>
+
+<!--bootstrap select-->
+<script src="/resources/bootstrap3.3.5/js/bootstrap-select-1.10.0.min.js"></script>
+<!--bootstrap select-->
+
 <!-- include summernote css/js-->
 <script src="/resources/summernote0.8.1/summernote0.8.1.js"></script>
 
@@ -128,9 +133,7 @@
 <script src="/resources/jquerytagsinput/jquery.tagsinput.min.js"></script>
 <!-- tagsinput-->
 
-<!--bootstrap select-->
-<script src="/resources/bootstrap3.3.5/js/bootstrap-select-1.10.0.min.js"></script>
-<!--bootstrap select-->
+
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({

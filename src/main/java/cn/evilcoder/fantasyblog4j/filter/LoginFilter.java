@@ -40,6 +40,7 @@ public class LoginFilter implements Filter {
                 long expiredTime = (long)session.getAttribute(LoginSession.EXPIRED_TIME_KEY);
                 long now = System.currentTimeMillis();
                 if(now<=expiredTime && TokenUtils.validateToken(username,uid,token)){
+                    session.setAttribute(LoginSession.EXPIRED_TIME_KEY,now+TokenUtils.TOKEN_EXPIRED_TIME_MS);
                     filterChain.doFilter(request,response);
                 }else{
                     logger.error("login time expired or token invalidate");

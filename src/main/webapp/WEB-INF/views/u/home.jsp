@@ -22,6 +22,8 @@
         <div class="col-md-12">
             <a class="btn btn-info btn-lg" href="/u/post" target="_blank">发博文</a>
             &nbsp;&nbsp;
+            <a class="btn btn-info btn-lg" href="/note/${uid}" target="_blank">随手记</a>
+            &nbsp;&nbsp;
             <a class="btn btn-info btn-lg" href="#" target="_blank">文章管理</a>
         </div>
 

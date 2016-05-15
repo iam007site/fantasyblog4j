@@ -28,6 +28,8 @@
                 </li>
                 <li ><a href="/post/search/0/0/0/1?kw="><i class="fa fa-book"></i> 文章</a>
                 </li>
+                <li ><a href="/note/0"><i class="fa fa-book"></i> 随手记</a>
+                </li>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> 联系我</a>
                 </li>
                 <li><a href="/util/about"><i class="fa fa-user"></i> 关于</a>

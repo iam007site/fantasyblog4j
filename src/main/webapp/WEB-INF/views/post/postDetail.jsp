@@ -302,11 +302,6 @@
         if ($('#comment-name').val() == '' || $('#comment-email').val() == '' ||  $('#summernote').summernote('code') == '') {
             alert("请完成表单");
         } else {
-            var pid = $('#pid').val();
-            var username = $('#comment-name').val();
-            var email = $('#comment-email').val();
-            var content = $('#summernote').summernote('code');
-            var form = "";
             $.ajax({
                 url:"/post/comment",
                 type:"post",

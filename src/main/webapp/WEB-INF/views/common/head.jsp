@@ -8,7 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="keywords" content="evilcoder 技术博客 云技术 java spring jvm 数据库 开放云 leetcode题解 北邮">
+<meta name="description" content="取名evilcoder，并不代表是邪恶的码农，仅仅代表要有追求技术的动力">
 <meta name="author" content="evilcoder">
 <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icon50x50.png" media="screen" />
 <!-- Bootstrap core CSS -->
