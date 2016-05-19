@@ -12,6 +12,7 @@ public class NewPostForm implements Serializable {
   private String category;
   private String tags;
   private String content;
+  private int state;
 
   public String getTitle() {
     return title;
@@ -43,5 +44,13 @@ public class NewPostForm implements Serializable {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public int getState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
   }
 }

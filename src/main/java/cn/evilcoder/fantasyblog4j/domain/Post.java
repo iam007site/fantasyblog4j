@@ -12,7 +12,7 @@ public class Post extends BaseDomain{
   private String category;
   private String tags;
   private int visitTime;
-
+  private int state;
 
   public long getUid() {
     return uid;
@@ -52,5 +52,13 @@ public class Post extends BaseDomain{
 
   public void setVisitTime(int visitTime) {
     this.visitTime = visitTime;
+  }
+
+  public int getState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
   }
 }

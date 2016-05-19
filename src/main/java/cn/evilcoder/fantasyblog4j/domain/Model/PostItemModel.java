@@ -18,6 +18,7 @@ public class PostItemModel {
     private int visitTime;
     private Date ctime;
     private ArrayList<String> tags;
+    private int state;
 
     public long getUid() {
         return uid;
@@ -89,5 +90,13 @@ public class PostItemModel {
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

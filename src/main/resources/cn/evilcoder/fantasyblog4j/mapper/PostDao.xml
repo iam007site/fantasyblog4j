@@ -22,6 +22,7 @@
         <result column="visit_time" property="visitTime"/>
         <result column="ctime" property="ctime"/>
         <result column="mtime" property="mtime"/>
+        <result column="state" property="state"/>
     </resultMap>
     <resultMap id="PostDetailMap" type="postDetail">
         <id column="id" property="id"/>
@@ -40,6 +41,7 @@
         <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
         <result column="post_ctime" property="ctime"/>
+        <result column="post_state" property="state"/>
     </resultMap>
 
     <resultMap id="PostItemModelMap" type="postItemModel">
@@ -51,11 +53,12 @@
         <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
         <result column="post_ctime" property="ctime"/>
+        <result column="state" property="state"/>
     </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
-        p_post(uid,title,category,tags,visit_time,ctime,mtime)
-        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{ctime})
+        p_post(uid,title,category,tags,visit_time,ctime,mtime,state)
+        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{ctime},#{state})
     </insert>
     <insert id="insertPostDetail" useGeneratedKeys="true" parameterType="postDetail" keyProperty="id">
         insert into
@@ -72,11 +75,12 @@
             P.visit_time  AS post_visit_time,
             P.ctime AS post_ctime,
             U.id AS post_uid,
-            U.username AS post_username
+            U.username AS post_username,
+            P.state AS post_state
         FROM p_post P
             LEFT JOIN u_user U on P.uid = U.id
             LEFT JOIN p_post_detail D ON D.pid = P.id
-        WHERE P.id = #{pid}
+        WHERE P.id = #{pid} and P.state = 0
         limit 1
     </select>
 
@@ -95,13 +99,15 @@
         P.visit_time AS post_visit_time,
         P.ctime AS post_ctime,
         U.id AS post_uid,
-        U.username AS post_username
+        U.username AS post_username,
+        P.state
         FROM p_post P
         LEFT JOIN
         u_user U on P.uid = U.id
         <where>
+            state = 0
             <if test="uid > 0">
-                P.uid = #{uid}
+                and P.uid = #{uid}
             </if>
             <if test="category != null">
                 AND P.category = #{category}
@@ -118,11 +124,13 @@
 
     <select id="getPopPosts" resultMap="PostMap" useCache="true" >
         SELECT * FROM p_post
+        WHERE state = 0
         ORDER BY visit_time DESC
         limit 10
     </select>
     <select id="getNewPosts" resultMap="PostMap" useCache="true" >
         SELECT * FROM p_post
+        WHERE state = 0
         ORDER BY ctime DESC
         limit 10
     </select>
@@ -130,7 +138,7 @@
     <select id="getUserCats" parameterType="long" resultMap="cn.evilcoder.fantasyblog4j.dao.PostTagDao.KVMap" useCache="true">
         SELECT category as k,count(*) as v
         FROM p_post
-        WHERE uid = #{uid}
+        WHERE uid = #{uid} and state = 0
         GROUP BY category
         ORDER BY v DESC
     </select>
@@ -139,6 +147,7 @@
     <select id="getAllCats" resultMap="cn.evilcoder.fantasyblog4j.dao.PostTagDao.KVMap" useCache="true">
         SELECT category as k,count(*) as v
         FROM p_post
+        WHERE state = 0
         GROUP BY category
         ORDER BY v DESC
     </select>

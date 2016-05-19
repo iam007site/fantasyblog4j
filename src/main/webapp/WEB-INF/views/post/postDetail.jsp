@@ -57,7 +57,7 @@
                 <hr>
                 <div class=" well" >
                     <br>
-                    <c:out value="${post.content}" default="无法显示博文" escapeXml="false"/>
+                    <c:out value="${post.content}" default="无法显示博文,文章未公开或被迁移！" escapeXml="false"/>
                     <br>
                 </div>
                 <p><i>Do you like the post? </i> &nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-success" data-url="">Like</a></p>
@@ -71,13 +71,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="comment-name">Name</label>
                                     <input type="text" name="username" class="form-control" id="comment-name" placeholder="Enter name" required="required" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
+                                    <label for="comment-email">Email Address</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-envelope"></span>
@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Message</label>
+                                    <label for="comment-name">Message</label>
                                     <textarea name="content" id="summernote" class="form-control" required="required" placeholder="Message">
 
                                     </textarea>

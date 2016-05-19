@@ -76,10 +76,11 @@ public class UserController {
         return "post/addPost";
     }
 
-    @RequestMapping(value = "post",method = RequestMethod.POST,params = {"title","category","tags","content"})
+    @RequestMapping(value = "post",method = RequestMethod.POST,params = {"title","category","tags","content","state"})
     public String addPostSubmit(HttpServletRequest request, @ModelAttribute NewPostForm form){
         long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
         Post post = new Post();
+        post.setState(form.getState());
         post.setTitle(form.getTitle());
         post.setCategory(form.getCategory());
         post.setUid(uid);

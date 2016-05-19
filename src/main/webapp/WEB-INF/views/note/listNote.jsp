@@ -21,27 +21,21 @@
 <jsp:include page="../common/nav.jsp"/>
 
 <div class="container">
-    <div class="row">
-
-
         <div class="row">
             <c:if test="${show}">
                 <form role="form">
-                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">添加随手记(不超过500字)</label>
+                                <label for="summernote">添加随手记(不超过500字)</label>
                                     <textarea name="content" id="summernote" class="form-control" required="required" placeholder="Message">
-
                                     </textarea>
                             </div>
                         </div>
-                    </div>
                     <button type="button" onclick="handleNote()" class="btn btn-primary"><i class="fa fa-reply"></i> 提交随手记</button>
                 </form>
             </c:if>
             <br>
-            <ul id="notes">
+            <ul id="notes" class="col-md-12">
                 <c:forEach items="${notes}" var="note">
                     <div class="well well-sm">
                         <h5>
@@ -59,7 +53,6 @@
                 </c:if>
             </ul>
         </div>
-    </div>
 </div>
 
 

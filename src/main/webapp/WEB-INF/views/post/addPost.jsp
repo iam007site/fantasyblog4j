@@ -45,6 +45,18 @@
                             </div>
                         </div>
 
+
+                        <!-- 状态-->
+                        <div class="form-group">
+                            <label class="col-md-1 control-label" for="state">状态</label>
+                            <div class="col-md-2">
+                                <select class="form-control" id="state" name="state">
+                                    <option value="0">公开发布</option>
+                                    <option value="1">存为草稿</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- 分类-->
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="category">分类</label>
@@ -56,6 +68,8 @@
                                 <span class="text-center">或点击右边热门分类进行选择！</span>
                             </div>
                         </div>
+
+
 
                         <!-- 标签-->
                         <div class="form-group">

@@ -12,4 +12,8 @@ public class Common {
      public static final int PUBLIC = 0;
      public static final int PRIVATE = 1;
   }
+    public static class PostState {
+        public static final int PUBLIC = 0;
+        public static final int DRAFT = 1;
+    }
 }
