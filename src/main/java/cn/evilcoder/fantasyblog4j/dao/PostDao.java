@@ -15,8 +15,12 @@ import java.util.ArrayList;
  */
 public interface PostDao {
     public long insertPost(Post post);
+    public int updatePost(Post post);
+    public int deletePost(@Param("uid") long uid, @Param("pid") long pid);
+    public int deletePostDetail(@Param("pid") long pid);
 
     public long insertPostDetail(PostDetail PostDetail);
+    public int updatePostDetail(PostDetail PostDetail);
 
     public PostDetailModel selectPostDetailWithState(@Param("pid") long pid,@Param("state") int state);
     public PostDetailModel selectPostDetailWithoutState(@Param("pid") long pid);

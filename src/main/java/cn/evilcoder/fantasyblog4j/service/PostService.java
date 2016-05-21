@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public interface PostService {
 
     public boolean insertPost(Post post, String tagStr, String content);
+    public boolean updatePost(Post post, String tagStr, String content);
+    public boolean deletePost(long uid,long pid);
 
     public PostDetailModel selectDetailWithState(long pid,int state);
     public PostDetailModel selectDetailWithoutState(long pid);

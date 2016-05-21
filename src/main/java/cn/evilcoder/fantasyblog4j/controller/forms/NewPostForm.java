@@ -8,11 +8,20 @@ import java.io.Serializable;
  * Time: 13:04
  */
 public class NewPostForm implements Serializable {
+  private long id;
   private String title;
   private String category;
   private String tags;
   private String content;
   private int state;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
 
   public String getTitle() {
     return title;

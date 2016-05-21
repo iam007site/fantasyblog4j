@@ -42,7 +42,22 @@
                     <c:forEach var="item" items="${list}">
                         <tr>
                             <td><c:out value="${item.id}"></c:out></td>
-                            <td><c:out value="${item.title}"></c:out></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${item.state eq 0}">
+                                        <a target="_blank" href="/post/detail/${item.id}">
+                                            <c:out value="${item.title}"></c:out>
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a target="_blank" href="javascript:void(0)">
+                                            <c:out value="${item.title}"></c:out>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+
+
+                            </td>
                             <td><c:out value="${item.category}"></c:out></td>
                             <td>
                                 <c:choose>
@@ -59,9 +74,9 @@
                             <td>
                                 <a href="/u/post/edit?pid=${item.id}">修改</a>
                                 &nbsp;
-                                <a href="/u/post/preview?pid=${item.id}">预览</a>
+                                <a href="/u/post/preview?pid=${item.id}" target="_blank">预览</a>
                                 &nbsp;
-                                <a href="/u/post/delete?pid=${item.id}">删除</a>
+                                <a href="javascript:void(0)" onclick="confirmDelete('${item.id}','${item.title}')">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -100,6 +115,36 @@
 
 </div>
 </body>
-<jsp:include page="../common/footer.jsp"/>
 
+<jsp:include page="../common/footer.jsp"/>
+<script>
+    function confirmDelete(pid,title) {
+
+        var conf = confirm("确认要永久删除文章:\n"
+                + title +
+                "\n删除后无法找回！");
+        if(conf == true){
+            deletePost(pid,title);
+        }
+    }
+
+    function deletePost(pid,title) {
+        $.ajax({
+            url:"/u/post/delete?pid="+pid,
+            type:"get",
+            dataType:"json",
+            success:function (result) {
+                if(result) {
+                    alert("文章 " + title + " 已成功删除！");
+                    location.reload();
+                } else {
+                    alert("好像出了点问题，无法删除文章！")
+                }
+            },
+            error:function (data) {
+                alert("好像出了点问题，无法删除文章！");
+            }
+        });
+    }
+</script>
 </html>

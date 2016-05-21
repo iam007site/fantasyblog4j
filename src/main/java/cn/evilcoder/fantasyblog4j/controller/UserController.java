@@ -68,7 +68,6 @@ public class UserController {
     @RequestMapping(value = "post",method = RequestMethod.GET)
     public String addPostPage(HttpServletRequest request){
 
-        logger.info("==================================="+request.getSession().getAttribute(LoginSession.UID_KEY).toString());
         ArrayList<KeyValue> popTags = postService.getUserTags((long)request.getSession().getAttribute(LoginSession.UID_KEY));
         request.setAttribute("popTags", popTags);
         ArrayList<KeyValue> popCats = postService.getUserCats((long)request.getSession().getAttribute(LoginSession.UID_KEY));
@@ -91,7 +90,7 @@ public class UserController {
         post.setTags(form.getTags().replaceAll(",", Common.TAG_SPLITOR));
         postService.insertPost(post,form.getTags(),form.getContent());
         if(post.getId()>0){
-            return "redirect:/post/detail/"+post.getId();
+            return "redirect:/u/post/manager/1";
         }else{
             return "redirect:/u/post";
         }
@@ -117,13 +116,12 @@ public class UserController {
         PostDetailModel model = postService.selectDetailWithoutState(pid);
         if (null != model && model.getUid() == uid) {
             request.setAttribute("post", model);
-        } else {
-            if (null != model){
-                logger.error("uid = {} try to preview the post id = {} which is not belong to him!",uid,model.getPid());
-            }
-            request.setAttribute("post", null);
+            return "post/postDetail";
         }
-        return "post/postDetail";
+        if (null != model){
+            logger.error("uid = {} try to preview the post id = {} which is not belong to him!",uid,model.getPid());
+        }
+        return "error/401";
     }
 
     @RequestMapping(value = "post/edit",method = RequestMethod.GET,params = {"pid"})
@@ -132,14 +130,46 @@ public class UserController {
         long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
         PostDetailModel model = postService.selectDetailWithoutState(pid);
         if (null != model && model.getUid() == uid) {
+            ArrayList<KeyValue> popTags = postService.getUserTags((long)request.getSession().getAttribute(LoginSession.UID_KEY));
+            request.setAttribute("popTags", popTags);
+            ArrayList<KeyValue> popCats = postService.getUserCats((long)request.getSession().getAttribute(LoginSession.UID_KEY));
+            request.setAttribute("popCats", popCats);
+            model.setTagsStr(model.getTagsStr().replaceAll(Common.TAG_SPLITOR,","));
             request.setAttribute("post", model);
+            return "post/postEdit";
         } else {
-            if (null != model){
-                logger.error("uid = {} try to preview the post id = {} which is not belong to him!",uid,model.getPid());
-            }
-            request.setAttribute("post", null);
+            return "error/401";
         }
-        return "post/postEdit";
+
     }
 
+    @ResponseBody
+    @RequestMapping(value = "post/delete",method = RequestMethod.GET,params = {"pid"})
+    public Object deletePost(HttpServletRequest request,
+                               @RequestParam("pid") long pid) {
+        long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
+        return postService.deletePost(uid,pid);
+    }
+
+
+    @RequestMapping(value = "post/edit",method = RequestMethod.POST,params = {"title","category","tags","content","state"})
+    public String postEditSubmit(HttpServletRequest request, @ModelAttribute NewPostForm form){
+
+        long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
+        Post post = new Post();
+        post.setId(form.getId());
+        post.setState(form.getState());
+        post.setTitle(form.getTitle());
+        post.setCategory(form.getCategory());
+        post.setUid(uid);
+        post.setVisitTime(0);
+        post.setMtime(new Date());
+        post.setTags(form.getTags().replaceAll(",", Common.TAG_SPLITOR));
+        boolean result = postService.updatePost(post,form.getTags(),form.getContent());
+        if(result){
+            return "redirect:/u/post/manager/1";
+        }else{
+            return "redirect:/u/post";
+        }
+    }
 }

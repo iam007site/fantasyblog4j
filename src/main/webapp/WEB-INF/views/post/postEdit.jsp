@@ -32,8 +32,9 @@
     <div class="row-fluid">
         <div class="col-md-9">
             <div class="well well-sm">
-                <form id="postForm" class="form-horizontal" action="/u/post" method="post"
+                <form id="postForm" class="form-horizontal" action="/u/post/edit" method="post"
                       enctype="multipart/form-data">
+                    <input name="id" type="text" value="${post.pid}" style="display: none">
                     <fieldset>
                         <legend class="text-center">新建博文</legend>
                         <!-- Name input-->
@@ -41,10 +42,9 @@
                             <label class="col-md-1 control-label" for="title">标题</label>
                             <div class="col-md-11">
                                 <input id="title" name="title" type="text" placeholder="write you blog title here..."
-                                       class="form-control" value="">
+                                       class="form-control" value="${post.title}">
                             </div>
                         </div>
-
 
                         <!-- 状态-->
                         <div class="form-group">
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="category">分类</label>
                             <div class="col-md-2">
-                                <input name="category" id="category" value="" type="text" class="form-control"
+                                <input name="category" id="category" value="${post.category}" type="text" class="form-control"
                                        placeholder="write a category">
                             </div>
                             <div class="col-md-9">
@@ -75,7 +75,7 @@
                         <div class="form-group">
                             <label class="col-md-1 control-label" for="tags">标签</label>
                             <div class="col-md-9">
-                                <input name="tags" id="tags" value=""/>
+                                <input name="tags" id="tags" value="${post.tagsStr}"/>
                             </div>
                         </div>
 
@@ -84,7 +84,9 @@
                             <input type="text" name="content" id="content" value="" style="display: none"/>
                             <label class="col-md-1 control-label" for="summernote">详情</label>
                             <div class="col-md-11">
-                                <div class="form-control" id="summernote"><p>Please write your blog here...</p></div>
+                                <div class="form-control" id="summernote">
+                                    <c:out value="${post.content}" escapeXml="false"/>
+                                </div>
                             </div>
 
                         </div>

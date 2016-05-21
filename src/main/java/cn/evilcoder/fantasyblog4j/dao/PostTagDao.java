@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public interface PostTagDao {
   public long insert(PostTag postTag);
   public void insertBatch(@Param("tags") ArrayList<PostTag> tags);
+  public int deletePostTag(@Param("pid") long pid);
   public ArrayList<PostTag> selectUserTags(@Param("uid") long uid);
   public ArrayList<PostTag> selectPostTags(@Param("pid") long pid);
   public ArrayList<KeyValue> selectUserPopularTags(@Param("uid") long uid);

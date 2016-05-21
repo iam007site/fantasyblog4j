@@ -58,13 +58,33 @@
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
         p_post(uid,title,category,tags,visit_time,ctime,mtime,state)
-        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{ctime},#{state})
+        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{mtime},#{state})
     </insert>
+
+    <update id="updatePost" parameterType="post">
+        UPDATE p_post SET
+        title = #{title},
+        category = #{category},
+        tags = #{tags},
+        ctime = #{ctime},
+        mtime = #{mtime},
+        state = #{state}
+        WHERE id = #{id}
+    </update>
+
     <insert id="insertPostDetail" useGeneratedKeys="true" parameterType="postDetail" keyProperty="id">
         insert into
         p_post_detail(pid,content,ctime,mtime)
         values(#{pid},#{content},#{ctime},#{ctime})
     </insert>
+
+    <update id="updatePostDetail" parameterType="postDetail">
+        UPDATE p_post_detail SET
+        content = #{content},
+        mtime = #{mtime}
+        WHERE pid = #{pid}
+    </update>
+
     <select id="selectPostDetailWithState"  resultMap="PostDetailModelMap" >
         SELECT
             P.id AS post_id,
@@ -190,4 +210,13 @@
         ORDER BY ctime DESC
         limit #{offset},#{pageSize}
     </select>
+
+    <delete id="deletePost">
+        DELETE FROM p_post
+        WHERE id = #{pid} and uid = #{uid}
+    </delete>
+    <delete id="deletePostDetail" parameterType="long">
+        DELETE FROM p_post_detail
+        WHERE pid = #{pid}
+    </delete>
 </mapper>

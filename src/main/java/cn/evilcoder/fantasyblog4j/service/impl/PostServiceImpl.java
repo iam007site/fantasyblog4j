@@ -61,6 +61,44 @@ public class PostServiceImpl implements PostService {
         return pid > 0;
     }
 
+    @Transactional
+    @Override
+    public boolean updatePost(Post post, String tagStr, String content) {
+        int count = postDao.updatePost(post);
+        if(count>0){
+            PostDetail detail = new PostDetail();
+            detail.setMtime(post.getMtime());
+            detail.setPid(post.getId());
+            detail.setContent(content);
+            postDao.updatePostDetail(detail);
+
+            ArrayList<PostTag> tags = new ArrayList<PostTag>();
+            for (String name : tagStr.split(",")) {
+                PostTag tag = new PostTag();
+                tag.setPid(post.getId());
+                tag.setUid(post.getUid());
+                tag.setName(name);
+                tag.setCtime(post.getCtime());
+                tag.setMtime(post.getMtime());
+                tags.add(tag);
+            }
+            postTagDao.deletePostTag(post.getId());
+            postTagDao.insertBatch(tags);
+        }
+        return count>0;
+    }
+
+    @Transactional
+    @Override
+    public boolean deletePost(long uid, long pid) {
+        int count = postDao.deletePost(uid,pid);
+        if(count>0){
+            postDao.deletePostDetail(pid);
+            postTagDao.deletePostTag(pid);
+        }
+        return count>0;
+    }
+
     @Override
     public PostDetailModel selectDetailWithState(long pid, int state) {
         PostDetailModel detailModel = postDao.selectPostDetailWithState(pid, state);

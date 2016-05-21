@@ -64,4 +64,9 @@
     <select id="getAll" resultMap="PostTagMap">
         SELECT * FROM p_post_tag
     </select>
+
+    <delete id="deletePostTag" parameterType="long">
+        DELETE from p_post_tag
+        WHERE pid = #{pid}
+    </delete>
 </mapper>
