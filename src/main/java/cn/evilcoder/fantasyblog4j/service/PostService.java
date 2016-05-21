@@ -16,7 +16,8 @@ public interface PostService {
 
     public boolean insertPost(Post post, String tagStr, String content);
 
-    public PostDetailModel selectDetail(long pid);
+    public PostDetailModel selectDetailWithState(long pid,int state);
+    public PostDetailModel selectDetailWithoutState(long pid);
 
     public ArrayList<KeyValue> getUserTags(long uid);
     public ArrayList<KeyValue> getUserCats(long uid);
@@ -35,4 +36,7 @@ public interface PostService {
 
     public long addPostComment(PostComment comment);
     public ArrayList<PostComment> getPostComment(long pid);
+
+    //for backen manager
+    public ArrayList<Post> getUserPostForManager(long uid,int offset,int pageSize);
 }

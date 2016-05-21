@@ -62,9 +62,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDetailModel selectDetail(long pid) {
-        PostDetailModel detailModel = postDao.selectPostDetail(pid);
+    public PostDetailModel selectDetailWithState(long pid, int state) {
+        PostDetailModel detailModel = postDao.selectPostDetailWithState(pid, state);
+        setTagIntoPostDetailModel(detailModel);
+        return detailModel;
+    }
+    @Override
+    public PostDetailModel selectDetailWithoutState(long pid) {
+        PostDetailModel detailModel = postDao.selectPostDetailWithoutState(pid);
+        setTagIntoPostDetailModel(detailModel);
+        return detailModel;
+    }
 
+    private void setTagIntoPostDetailModel(PostDetailModel detailModel) {
         if (detailModel != null) {
             ArrayList<String> tags = new ArrayList<String>();
             for (String name : detailModel.getTagsStr().split(Common.TAG_SPLITOR)) {
@@ -72,7 +82,6 @@ public class PostServiceImpl implements PostService {
             }
             detailModel.setTags(tags);
         }
-        return detailModel;
     }
 
     @Override
@@ -166,5 +175,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public ArrayList<PostComment> getPostComment(long pid) {
         return postCommentDao.getPostComment(pid);
+    }
+
+    @Override
+    public ArrayList<Post> getUserPostForManager(long uid, int offset, int pageSize) {
+
+        return postDao.getUserPostForManager(uid,offset,pageSize);
     }
 }

@@ -4,6 +4,7 @@ import cn.evilcoder.fantasyblog4j.commons.Common;
 import cn.evilcoder.fantasyblog4j.commons.LoginSession;
 import cn.evilcoder.fantasyblog4j.controller.forms.NewPostForm;
 import cn.evilcoder.fantasyblog4j.domain.KeyValue;
+import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Post;
 import cn.evilcoder.fantasyblog4j.domain.User;
 import cn.evilcoder.fantasyblog4j.service.PostService;
@@ -94,7 +95,51 @@ public class UserController {
         }else{
             return "redirect:/u/post";
         }
+    }
 
+    @RequestMapping(value = "post/manager/{page}",method = RequestMethod.GET)
+    public String postManager(HttpServletRequest request,
+            @PathVariable("page") int page) {
+        page = page > 1 ? page : 1;
+        int pageSize = 10;
+        long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
+        ArrayList<Post> posts = postService.getUserPostForManager(uid,(page-1)*pageSize,pageSize);
+        request.setAttribute("list",posts);
+        request.setAttribute("page",page);
+        request.setAttribute("pageSize",pageSize);
+        return "post/postManager";
+    }
+
+    @RequestMapping(value = "post/preview",method = RequestMethod.GET,params = {"pid"})
+    public String postPreview(HttpServletRequest request,
+                              @RequestParam("pid") long pid) {
+        long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
+        PostDetailModel model = postService.selectDetailWithoutState(pid);
+        if (null != model && model.getUid() == uid) {
+            request.setAttribute("post", model);
+        } else {
+            if (null != model){
+                logger.error("uid = {} try to preview the post id = {} which is not belong to him!",uid,model.getPid());
+            }
+            request.setAttribute("post", null);
+        }
+        return "post/postDetail";
+    }
+
+    @RequestMapping(value = "post/edit",method = RequestMethod.GET,params = {"pid"})
+    public String postEditPage(HttpServletRequest request,
+                              @RequestParam("pid") long pid) {
+        long uid = (long)request.getSession().getAttribute(LoginSession.UID_KEY);
+        PostDetailModel model = postService.selectDetailWithoutState(pid);
+        if (null != model && model.getUid() == uid) {
+            request.setAttribute("post", model);
+        } else {
+            if (null != model){
+                logger.error("uid = {} try to preview the post id = {} which is not belong to him!",uid,model.getPid());
+            }
+            request.setAttribute("post", null);
+        }
+        return "post/postEdit";
     }
 
 }

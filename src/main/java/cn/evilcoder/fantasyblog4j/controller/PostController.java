@@ -1,5 +1,6 @@
 package cn.evilcoder.fantasyblog4j.controller;
 
+import cn.evilcoder.fantasyblog4j.commons.Common;
 import cn.evilcoder.fantasyblog4j.domain.KeyValue;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostDetailModel;
 import cn.evilcoder.fantasyblog4j.domain.Model.PostItemModel;
@@ -32,7 +33,7 @@ public class PostController {
 
     @RequestMapping(value = "detail/{pid}", method = RequestMethod.GET)
     public String postDetail(HttpServletRequest request, @PathVariable("pid") long pid) {
-        PostDetailModel model = postService.selectDetail(pid);
+        PostDetailModel model = postService.selectDetailWithState(pid,Common.PostState.PUBLIC);
         if(model!=null){
             postService.addPostViewTime(model.getPid());
         }

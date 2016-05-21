@@ -18,7 +18,8 @@ public interface PostDao {
 
     public long insertPostDetail(PostDetail PostDetail);
 
-    public PostDetailModel selectPostDetail(@Param("pid") long pid);
+    public PostDetailModel selectPostDetailWithState(@Param("pid") long pid,@Param("state") int state);
+    public PostDetailModel selectPostDetailWithoutState(@Param("pid") long pid);
 
     public int addPostViewTime(@Param("pid") long pid);
 
@@ -33,4 +34,5 @@ public interface PostDao {
     public ArrayList<KeyValue> getAllCats();
 
     public int batchUpdatePostTag(ArrayList<Post> list);
+    public ArrayList<Post> getUserPostForManager(@Param("uid") long uid, @Param("offset") int offset, @Param("pageSize") int pageSize);
 }

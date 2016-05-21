@@ -65,7 +65,7 @@
         p_post_detail(pid,content,ctime,mtime)
         values(#{pid},#{content},#{ctime},#{ctime})
     </insert>
-    <select id="selectPostDetail" parameterType="long" resultMap="PostDetailModelMap" >
+    <select id="selectPostDetailWithState"  resultMap="PostDetailModelMap" >
         SELECT
             P.id AS post_id,
             P.title AS post_title,
@@ -80,9 +80,30 @@
         FROM p_post P
             LEFT JOIN u_user U on P.uid = U.id
             LEFT JOIN p_post_detail D ON D.pid = P.id
-        WHERE P.id = #{pid} and P.state = 0
+        WHERE P.id = #{pid} and P.state = #{state}
         limit 1
     </select>
+
+    <select id="selectPostDetailWithoutState"  resultMap="PostDetailModelMap" >
+        SELECT
+        P.id AS post_id,
+        P.title AS post_title,
+        D.content AS post_content,
+        P.category AS post_category,
+        P.tags AS post_tags,
+        P.visit_time  AS post_visit_time,
+        P.ctime AS post_ctime,
+        U.id AS post_uid,
+        U.username AS post_username,
+        P.state AS post_state
+        FROM p_post P
+        LEFT JOIN u_user U on P.uid = U.id
+        LEFT JOIN p_post_detail D ON D.pid = P.id
+        WHERE P.id = #{pid}
+        limit 1
+    </select>
+
+
 
     <update id="addPostViewTime" parameterType="long">
         UPDATE p_post
@@ -162,4 +183,11 @@
         </foreach>
 
     </update>
+
+    <select id="getUserPostForManager" useCache="true" resultMap="PostMap" >
+        select * FROM p_post
+        WHERE uid = #{uid}
+        ORDER BY ctime DESC
+        limit #{offset},#{pageSize}
+    </select>
 </mapper>

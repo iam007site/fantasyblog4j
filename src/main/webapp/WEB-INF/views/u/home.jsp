@@ -24,7 +24,7 @@
             &nbsp;&nbsp;
             <a class="btn btn-info btn-lg" href="/note/${uid}" target="_blank">随手记</a>
             &nbsp;&nbsp;
-            <a class="btn btn-info btn-lg" href="#" target="_blank">文章管理</a>
+            <a class="btn btn-info btn-lg" href="/u/post/manager/1" target="_blank">文章管理</a>
         </div>
 
     </div>
