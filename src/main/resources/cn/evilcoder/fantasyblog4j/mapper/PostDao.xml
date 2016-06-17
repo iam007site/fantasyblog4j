@@ -20,6 +20,7 @@
         <result column="category" property="category"/>
         <result column="tags" property="tags"/>
         <result column="visit_time" property="visitTime"/>
+        <result column="comment_num" property="commentNum"/>
         <result column="ctime" property="ctime"/>
         <result column="mtime" property="mtime"/>
         <result column="state" property="state"/>
@@ -40,6 +41,7 @@
         <result column="post_category" property="category"/>
         <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
+        <result column="post_comment_num" property="commentNum"/>
         <result column="post_ctime" property="ctime"/>
         <result column="post_state" property="state"/>
     </resultMap>
@@ -52,13 +54,14 @@
         <result column="post_category" property="category"/>
         <result column="post_tags" property="tagsStr"/>
         <result column="post_visit_time" property="visitTime"/>
+        <result column="post_comment_num" property="commentNum"/>
         <result column="post_ctime" property="ctime"/>
         <result column="state" property="state"/>
     </resultMap>
     <insert id="insertPost" useGeneratedKeys="true" parameterType="post" keyProperty="id">
         insert into
-        p_post(uid,title,category,tags,visit_time,ctime,mtime,state)
-        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{ctime},#{mtime},#{state})
+        p_post(uid,title,category,tags,visit_time,comment_num,ctime,mtime,state)
+        values(#{uid},#{title},#{category},#{tags},#{visitTime},#{commentNum},#{ctime},#{mtime},#{state})
     </insert>
 
     <update id="updatePost" parameterType="post">
@@ -93,6 +96,7 @@
             P.category AS post_category,
             P.tags AS post_tags,
             P.visit_time  AS post_visit_time,
+            P.comment_num  AS post_comment_num,
             P.ctime AS post_ctime,
             U.id AS post_uid,
             U.username AS post_username,
@@ -112,6 +116,7 @@
         P.category AS post_category,
         P.tags AS post_tags,
         P.visit_time  AS post_visit_time,
+        P.comment_num  AS post_comment_num,
         P.ctime AS post_ctime,
         U.id AS post_uid,
         U.username AS post_username,
@@ -130,6 +135,11 @@
         SET visit_time = visit_time+1
         WHERE id = #{pid}
     </update>
+    <update id="addPostCommentNum" parameterType="long">
+        UPDATE p_post
+        SET comment_num = comment_num+1
+        WHERE id = #{pid}
+    </update>
 
     <select id="search" resultMap="PostItemModelMap" useCache="true" parameterType="queryModel">
         SELECT
@@ -138,6 +148,7 @@
         P.category AS post_category,
         P.tags AS post_tags,
         P.visit_time AS post_visit_time,
+        P.comment_num AS post_comment_num,
         P.ctime AS post_ctime,
         U.id AS post_uid,
         U.username AS post_username,
@@ -219,4 +230,10 @@
         DELETE FROM p_post_detail
         WHERE pid = #{pid}
     </delete>
+
+    <select id="getById" parameterType="long" resultMap="PostMap" useCache="true" >
+        SELECT * FROM p_post
+        WHENEVER id = #{id}
+        limit 1
+    </select>
 </mapper>

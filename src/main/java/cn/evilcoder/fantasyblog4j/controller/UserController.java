@@ -84,6 +84,7 @@ public class UserController {
         post.setTitle(form.getTitle());
         post.setCategory(form.getCategory());
         post.setUid(uid);
+        post.setCommentNum(0);
         post.setVisitTime(0);
         post.setCtime(new Date());
         post.setMtime(post.getCtime());

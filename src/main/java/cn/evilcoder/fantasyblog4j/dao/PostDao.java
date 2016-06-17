@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Time: 13:08
  */
 public interface PostDao {
+    public Post getById(@Param("id") long id);
     public long insertPost(Post post);
     public int updatePost(Post post);
     public int deletePost(@Param("uid") long uid, @Param("pid") long pid);
@@ -26,6 +27,7 @@ public interface PostDao {
     public PostDetailModel selectPostDetailWithoutState(@Param("pid") long pid);
 
     public int addPostViewTime(@Param("pid") long pid);
+    public int addPostCommentNum(@Param("pid") long pid);
 
     public ArrayList<PostItemModel> search(QueryModel queryModel);
 

@@ -16,6 +16,7 @@ public class PostItemModel {
     private String category;
     private String tagsStr;
     private int visitTime;
+    private int commentNum;
     private Date ctime;
     private ArrayList<String> tags;
     private int state;
@@ -74,6 +75,14 @@ public class PostItemModel {
 
     public void setVisitTime(int visitTime) {
         this.visitTime = visitTime;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
     }
 
     public Date getCtime() {

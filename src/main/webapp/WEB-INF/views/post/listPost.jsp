@@ -36,7 +36,7 @@
                             <div class="col-md-12 post-header-line">
                                 <span class="glyphicon glyphicon-user"></span>by <a href="/post/search/${post.uid}/0/0/1?kw="><c:out value="${post.username}"/></a> |
                                 <span class="glyphicon glyphicon-calendar"> </span><fmt:formatDate value="${post.ctime}" type="date" /> |
-                                <span class="glyphicon glyphicon-comment"></span><a href="#"> 0 评论</a> |
+                                <span class="glyphicon glyphicon-comment"></span><a href="#"> <c:out value="${post.commentNum}"/> 评论</a> |
                                 <i class="icon-share"></i><a href="#"><c:out value="${post.visitTime}"/> 浏览</a> |
                                 <span class="glyphicon glyphicon-tags"></span>分类 :
                                 <a href="/post/search/${query.uid}/${post.category}/0/1?kw=">
@@ -193,7 +193,7 @@
             success:function (items) {
                 $.each(items,function(i, item) {
                     var html = "";
-                    html += "<a href='" + "/post/search/0/0/" + item.k + "/1?kw='>" ;
+                    html += "<a href='" + "/post/search/0/" + item.k + "/0/1?kw='>" ;
                     html += "<span class='btn btn-info btn-xs' style='margin-left: 5px ;margin-top:2px'>";
                     html += item.k + "( " + item.v + " )";
                     html += "</span>";

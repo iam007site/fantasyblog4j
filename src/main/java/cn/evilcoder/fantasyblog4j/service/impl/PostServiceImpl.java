@@ -64,6 +64,12 @@ public class PostServiceImpl implements PostService {
     @Transactional
     @Override
     public boolean updatePost(Post post, String tagStr, String content) {
+        Post old = postDao.getById(post.getId());
+        if(null == old) {
+            return false;
+        }
+        post.setVisitTime(old.getVisitTime());
+        post.setCommentNum(old.getCommentNum());
         int count = postDao.updatePost(post);
         if(count>0){
             PostDetail detail = new PostDetail();
@@ -207,7 +213,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public long addPostComment(PostComment comment) {
-        return postCommentDao.insert(comment);
+        long cid = postCommentDao.insert(comment);
+        if(cid > 0) {
+            postDao.addPostCommentNum(comment.getPid());
+        }
+        return cid;
     }
 
     @Override
