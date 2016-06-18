@@ -233,7 +233,7 @@
 
     <select id="getById" parameterType="long" resultMap="PostMap" useCache="true" >
         SELECT * FROM p_post
-        WHENEVER id = #{id}
+        WHERE id = #{id}
         limit 1
     </select>
 </mapper>
