@@ -4,8 +4,10 @@ import cn.evilcoder.fantasyblog4j.commons.LoginSession;
 import cn.evilcoder.fantasyblog4j.utils.TokenUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +29,7 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+       logger.info("============= doing LoginFilter==================");
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpServletResponse httpResponse = (HttpServletResponse)response;
         if(httpRequest.getRequestURI().startsWith("/u/")){
@@ -39,8 +42,8 @@ public class LoginFilter implements Filter {
                 String token = session.getAttribute(LoginSession.TOKEN_KEY).toString();
                 long expiredTime = (long)session.getAttribute(LoginSession.EXPIRED_TIME_KEY);
                 long now = System.currentTimeMillis();
-                if(now<=expiredTime && TokenUtils.validateToken(username,uid,token)){
-                    session.setAttribute(LoginSession.EXPIRED_TIME_KEY,now+TokenUtils.TOKEN_EXPIRED_TIME_MS);
+                if(now <= expiredTime && TokenUtils.validateToken(username,uid,token)){
+                    session.setAttribute(LoginSession.EXPIRED_TIME_KEY, now + TokenUtils.TOKEN_EXPIRED_TIME_MS);
                     filterChain.doFilter(request,response);
                 }else{
                     logger.error("login time expired or token invalidate");
