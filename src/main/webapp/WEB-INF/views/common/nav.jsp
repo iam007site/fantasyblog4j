@@ -32,8 +32,12 @@
                 </li>
                 <li><a href="/util/contactus"><i class="fa fa-envelope"></i> 联系我</a>
                 </li>
-                <li><a href="/util/about"><i class="fa fa-user"></i> 关于</a>
+                <li><a href="https://github.com/huangshanqi?tab=repositories"><i class="fa fa-envelope"></i> Github</a>
                 </li>
+                <li><a href="http://evilcoder.farbox.com"><i class="fa fa-envelope"></i> 旧版博客</a>
+                </li>
+<%--                <li><a href="/util/about"><i class="fa fa-user"></i> 关于</a>
+                </li>--%>
 
                 <form class="navbar-form navbar-right" method="get" action='/post/search/0/0/0/1'>
                     <input id="kw" name="kw" type="text" class="form-control col-lg-8" placeholder="站点搜索..." />

@@ -12,7 +12,7 @@
 
         <p>Designed and built by <a href="http://www.evilcoder.cn" target="_blank">@evilcoder</a> . 本项目<a target="_blank" href="https://github.com/huangshanqi/fantasyblog4j"> fantasyblog4j </a>源码受 <a rel="license" href="https://github.com/huangshanqi/fantasyblog4j/blob/master/LICENSE" target="_blank"> Apache License </a>开源协议保护。</p>
         <ul class="bs-docs-footer-links text-muted">
-            <li><a href="https://github.com/huangshanqi" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/huangshanqi?tab=repositories" target="_blank">GitHub</a></li>
             <li>·</li>
             <li><a href="http://git.oschina.net/EvilCoder" target="_blank">Git oschina</a></li>
             <li>·</li>
